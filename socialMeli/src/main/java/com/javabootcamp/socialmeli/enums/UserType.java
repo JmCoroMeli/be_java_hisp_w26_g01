@@ -1,4 +1,4 @@
-package com.javabootcamp.enums;
+package com.javabootcamp.socialmeli.enums;
 
 public enum UserType {
     CLIENT,

@@ -1,6 +1,6 @@
 package com.javabootcamp.socialmeli.model;
 
-import com.javabootcamp.enums.UserType;
+import com.javabootcamp.socialmeli.enums.UserType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
