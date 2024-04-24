@@ -7,6 +7,7 @@ import com.javabootcamp.socialmeli.service.UserServiceImpl;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,6 +31,7 @@ public class UserController {
     @DeleteMapping("{userId}/unfollow/{userIdToUnfollow}")
     public ResponseEntity<?> unfollow(@PathVariable Integer userId, @PathVariable Integer userIdToUnfollow){
         return new ResponseEntity<>(userService.deleteFollow(userId,userIdToUnfollow), HttpStatus.OK);
+    }
 
     @GetMapping
     @RequestMapping("/{userId}/followers/list")
@@ -43,4 +45,5 @@ public class UserController {
     @PostMapping(path = "{userId}/follow/{userToFollow}")
     public ResponseEntity<ResponseDto> followUser(@PathVariable Integer userId, @PathVariable Integer userToFollow) {
         return ResponseEntity.ok(userService.addFollower(userId, userToFollow));
+    }
 }
