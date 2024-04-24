@@ -3,17 +3,22 @@ package com.javabootcamp.socialmeli.service;
 import com.javabootcamp.socialmeli.dto.ClientDto;
 import com.javabootcamp.socialmeli.dto.LastPostDto;
 import com.javabootcamp.socialmeli.dto.SellerDto;
-import com.javabootcamp.socialmeli.repository.UserRepository;
 
 import java.util.List;
+import java.util.Optional;
 
+import com.javabootcamp.socialmeli.exception.EntityNotFoundException;
+import com.javabootcamp.socialmeli.model.User;
+import com.javabootcamp.socialmeli.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+@Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements IUserService{
 
     private final UserRepository userRepository;
-
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    private final IPostService postService;
 
     @Override
     public List<SellerDto> searchFollowersById(Integer userId) {
@@ -41,16 +46,21 @@ public class UserServiceImpl implements IUserService{
     }
 
     @Override
-    public boolean existUser(Integer userId) {
-        return userRepository.findById(userId).isPresent();
+    public User searchUserById(Integer id) {
+        Optional<User> user = userRepository.findById(id);
+        if(user.isEmpty()){
+            throw new EntityNotFoundException("No existe el usuario");
+        }
+        return user.get();
     }
 
     @Override
     public LastPostDto getPostFromLastTwoWeeks(Integer userId) {
-        //valivamos que el usuario existe
-         if(!existUser(userId)) {
-             //lanzar excepción
-         }
+        User user = searchUserById(userId);
+
+        postService.findByTwoWeeksAgo()
+
+
 
 
 

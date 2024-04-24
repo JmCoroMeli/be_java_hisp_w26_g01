@@ -3,6 +3,7 @@ package com.javabootcamp.socialmeli.service;
 import com.javabootcamp.socialmeli.dto.ClientDto;
 import com.javabootcamp.socialmeli.dto.LastPostDto;
 import com.javabootcamp.socialmeli.dto.SellerDto;
+import com.javabootcamp.socialmeli.model.User;
 
 import java.util.List;
 
@@ -20,5 +21,5 @@ public interface IUserService {
 
     LastPostDto getPostFromLastTwoWeeks(Integer userId);
 
-    public boolean existUser(Integer userId);
+    User searchUserById(Integer id);
 }

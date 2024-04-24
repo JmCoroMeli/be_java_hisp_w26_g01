@@ -6,5 +6,5 @@ import com.javabootcamp.socialmeli.model.Post;
 
 public interface PostRepository {
     void add(Post post);
-    List<Post> findByTwoWeeksAgo();
+    List<Post> findByTwoWeeksAgo(List<Integer> sellersId);
 }

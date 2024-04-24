@@ -5,27 +5,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import com.javabootcamp.socialmeli.model.Follow;
 import com.javabootcamp.socialmeli.model.Post;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class PostRepositoryImpl implements PostRepository{
 
-    private List<Post> posts ;
+    private List<Post> postsList;
 
-    public PostRepositoryImpl() {
-        this.posts = new ArrayList<>();
+    public PostRepositoryImpl(){
+        this.postsList = new ArrayList<>();
     }
 
     @Override
     public void add(Post post) {
-
+        postsList.add(post);
     }
 
     @Override
-    public List<Post> findByTwoWeeksAgo() {
+    public List<Post> findByTwoWeeksAgo(List<Integer> sellersId) {
         LocalDate twoWeeksAgo = LocalDate.now().minusWeeks(2);
-        return posts.stream().filter(post -> post.getPublicationDate().isAfter(twoWeeksAgo)
-                || post.getPublicationDate().isEqual(twoWeeksAgo)).toList();
+        return postsList.stream().filter(post -> (post.getPublicationDate().isAfter(twoWeeksAgo)
+                || post.getPublicationDate().isEqual(twoWeeksAgo))
+                && sellersId.contains(post.getUser().getId())).toList();
     }
 
 }
