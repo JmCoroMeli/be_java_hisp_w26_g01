@@ -1,19 +1,27 @@
 package com.javabootcamp.socialmeli.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.javabootcamp.socialmeli.dto.ClientDto;
-import com.javabootcamp.socialmeli.dto.FollowerDto;
-import com.javabootcamp.socialmeli.dto.SellerWithFollowersDTO;
-import com.javabootcamp.socialmeli.dto.ResponseDto;
+
 import com.javabootcamp.socialmeli.exception.EntityNotFoundException;
+import com.javabootcamp.socialmeli.dto.SellerWithFollowersDTO;
+import com.javabootcamp.socialmeli.dto.FollowerDto;
+import com.javabootcamp.socialmeli.dto.ResponseDto;
+import com.javabootcamp.socialmeli.dto.SellerDto;
+import com.javabootcamp.socialmeli.dto.UserDto;
+import com.javabootcamp.socialmeli.repository.UserRepository;
 import com.javabootcamp.socialmeli.model.User;
 import com.javabootcamp.socialmeli.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
 import java.util.Optional;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -21,6 +29,13 @@ public class UserServiceImpl implements IUserService{
 
     private final UserRepository userRepository;
     private final IFollowService followService;
+    
+    @Override
+    public List<UserDto> getAllUsers() {
+        ObjectMapper mapper = new ObjectMapper();
+        return userRepository.getAllUsers().stream().map(u -> mapper.convertValue(u,UserDto.class)).collect(Collectors.toList());
+
+    }
 
     @Override
     public SellerWithFollowersDTO searchFollowersById(Integer userId) {
@@ -61,8 +76,8 @@ public class UserServiceImpl implements IUserService{
     }
 
     @Override
-    public void deleteFollo(Integer followerId, Integer followedId) {
-
+    public ResponseDto deleteFollow(Integer followerId, Integer followedId) {
+        return followService.deleteFollow(followerId,followedId);
     }
 
     @Override

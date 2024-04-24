@@ -10,12 +10,10 @@ import com.javabootcamp.socialmeli.model.User;
 import com.javabootcamp.socialmeli.repository.FollowRepository;
 
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-
 
 @Service
 @RequiredArgsConstructor
@@ -53,7 +51,14 @@ public class FollowServiceImpl implements IFollowService{
 
     @Override
     public ResponseDto deleteFollow(Integer followerId, Integer followedId) {
-        return null;
+        ResponseDto response = new ResponseDto();
+        try{
+            followRepository.delete(followerId,followedId);
+            response.setMessage("El usuario: " + followerId + " dejó de seguir a: " + followedId + " con exito.");
+        }catch (Exception e){
+            response.setMessage(e.getMessage());
+        }
+        return response;
     }
 
     @Override

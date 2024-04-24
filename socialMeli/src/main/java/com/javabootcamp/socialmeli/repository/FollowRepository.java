@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import com.javabootcamp.socialmeli.model.Follow;
 import com.javabootcamp.socialmeli.model.User;
+import org.springframework.stereotype.Repository;
+
 
 public interface FollowRepository {
     void add(Follow follow);

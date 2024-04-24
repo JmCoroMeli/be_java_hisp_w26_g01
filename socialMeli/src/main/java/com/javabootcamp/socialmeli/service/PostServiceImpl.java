@@ -2,12 +2,14 @@ package com.javabootcamp.socialmeli.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.javabootcamp.socialmeli.dto.PostDto;
+import com.javabootcamp.socialmeli.dto.ResponseDto;
 import com.javabootcamp.socialmeli.model.Post;
 import com.javabootcamp.socialmeli.model.Product;
 import com.javabootcamp.socialmeli.model.User;
 import com.javabootcamp.socialmeli.repository.PostRepository;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -23,6 +25,9 @@ public class PostServiceImpl implements IPostService {
     private final PostRepository postRepository;
     private final IUserService userService;
 
+@Service
+
+public class PostServiceImpl implements  IPostService{
     @Override
     public void addPost(PostDto postDto) {
 
