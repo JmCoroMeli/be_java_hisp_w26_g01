@@ -10,5 +10,5 @@ public interface FollowRepository {
     void delete(Integer followerId, Integer followedId);
     List<User> findFollowersById(Integer id);
     List<User> findFollowedsById(Integer id);
-    Long countFollowersById(Integer id);
+    int countFollowersById(Integer id);
 }

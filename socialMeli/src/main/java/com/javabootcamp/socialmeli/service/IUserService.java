@@ -1,6 +1,7 @@
 package com.javabootcamp.socialmeli.service;
 
 import com.javabootcamp.socialmeli.dto.ClientDto;
+import com.javabootcamp.socialmeli.dto.FollowersCountDto;
 import com.javabootcamp.socialmeli.dto.SellerDto;
 import com.javabootcamp.socialmeli.model.User;
 
@@ -12,7 +13,7 @@ public interface IUserService {
 
     List<ClientDto> searchFollowerdById(Integer userId);
 
-    Integer countFollowersById(Integer userId);
+    FollowersCountDto countFollowersById(Integer userId);
 
     void addFollower(Integer followerdId, Integer followedId);
 

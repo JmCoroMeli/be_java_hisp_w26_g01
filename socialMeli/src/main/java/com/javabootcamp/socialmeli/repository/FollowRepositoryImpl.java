@@ -6,7 +6,9 @@ import java.util.Optional;
 
 import com.javabootcamp.socialmeli.model.Follow;
 import com.javabootcamp.socialmeli.model.User;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class FollowRepositoryImpl implements FollowRepository {
 
     private List<Follow> followsList;
@@ -45,8 +47,8 @@ public class FollowRepositoryImpl implements FollowRepository {
     }
 
     @Override
-    public Long countFollowersById(Integer id) {
-        return followsList
+    public int countFollowersById(Integer id) {
+        return (int) followsList
                 .stream()
                 .filter(f -> f.getFollowed().getId().equals(id))
                 .count();

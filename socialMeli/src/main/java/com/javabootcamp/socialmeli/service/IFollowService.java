@@ -1,5 +1,6 @@
 package com.javabootcamp.socialmeli.service;
 
+import com.javabootcamp.socialmeli.dto.FollowersCountDto;
 import com.javabootcamp.socialmeli.dto.ResponseDto;
 import com.javabootcamp.socialmeli.dto.UserDto;
 import com.javabootcamp.socialmeli.model.User;
@@ -16,7 +17,7 @@ public interface IFollowService {
 
     ResponseDto deleteFollow(Integer followerId, Integer followedId);
 
-    Integer countFollowersById(Integer userId);
+    int countFollowers(User user);
 
 
 }
