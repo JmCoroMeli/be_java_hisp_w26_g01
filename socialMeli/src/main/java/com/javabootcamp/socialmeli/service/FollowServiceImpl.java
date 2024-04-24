@@ -4,22 +4,29 @@ import com.javabootcamp.socialmeli.dto.FollowerDto;
 import com.javabootcamp.socialmeli.dto.ResponseDto;
 import com.javabootcamp.socialmeli.dto.SellerWithFollowersDTO;
 import com.javabootcamp.socialmeli.dto.UserDto;
+import com.javabootcamp.socialmeli.exception.ResourceAlreadyExistsException;
+import com.javabootcamp.socialmeli.model.Follow;
 import com.javabootcamp.socialmeli.model.User;
 import com.javabootcamp.socialmeli.repository.FollowRepository;
+
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
-@Service
-public class FollowServiceImpl implements IFollowService{
 
-    private FollowRepository followRepository;
-    public FollowServiceImpl(FollowRepository followRepository){
-     this.followRepository = followRepository;
-    }
+
+@Service
+@RequiredArgsConstructor
+public class FollowServiceImpl implements IFollowService{
+    private final FollowRepository followRepository;
 
     @Override
-    public ResponseDto addFollow(User follower, User followed) {
-        return null;
+    public void addFollow(User follower, User followed) {
+        followRepository.findByFollowerIdAndFollowedId(follower.getId(),followed.getId())
+                .ifPresent((v) -> {throw new ResourceAlreadyExistsException("Follow already exists");});
+        followRepository.add(new Follow(follower, followed, LocalDate.now()));
     }
 
     @Override

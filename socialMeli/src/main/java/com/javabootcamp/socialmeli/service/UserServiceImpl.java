@@ -2,23 +2,25 @@ package com.javabootcamp.socialmeli.service;
 
 import com.javabootcamp.socialmeli.dto.ClientDto;
 import com.javabootcamp.socialmeli.dto.FollowerDto;
-import com.javabootcamp.socialmeli.dto.SellerDto;
 import com.javabootcamp.socialmeli.dto.SellerWithFollowersDTO;
+import com.javabootcamp.socialmeli.dto.ResponseDto;
 import com.javabootcamp.socialmeli.exception.EntityNotFoundException;
 import com.javabootcamp.socialmeli.model.User;
 import com.javabootcamp.socialmeli.repository.UserRepository;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 import java.util.List;
 import java.util.Optional;
 
+@Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements IUserService{
 
-    private IFollowService followService;
-    private UserRepository userRepository;
-    UserServiceImpl(IFollowService followService, UserRepository userRepository){
-        this.followService = followService;
-        this.userRepository = userRepository;
-    }
+    private final UserRepository userRepository;
+    private final IFollowService followService;
 
     @Override
     public SellerWithFollowersDTO searchFollowersById(Integer userId) {
@@ -49,12 +51,26 @@ public class UserServiceImpl implements IUserService{
     }
 
     @Override
-    public void addFollower(Integer followerdId, Integer followedId) {
-
+    public ResponseDto addFollower(Integer followerdId, Integer followedId) {
+        User follower = userRepository.findById(followerdId)
+                .orElseThrow(() -> new EntityNotFoundException("Follower not found"));
+        User followed = userRepository.findById(followedId)
+                .orElseThrow(() -> new EntityNotFoundException("Followed not found"));
+        followService.addFollow(follower, followed);
+        return new ResponseDto("Follower added succesfully");
     }
 
     @Override
     public void deleteFollo(Integer followerId, Integer followedId) {
 
+    }
+
+    @Override
+    public User searchUserById(Integer id) {
+        Optional<User> user = userRepository.findById(id);
+        if(user.isEmpty()){
+            throw new EntityNotFoundException("No existe el usuario");
+        }
+        return user.get();
     }
 }
