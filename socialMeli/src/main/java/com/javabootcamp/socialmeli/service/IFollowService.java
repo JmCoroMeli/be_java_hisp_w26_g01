@@ -1,6 +1,9 @@
 package com.javabootcamp.socialmeli.service;
 
+import com.javabootcamp.socialmeli.dto.FollowedSellersDto;
+
 import com.javabootcamp.socialmeli.dto.FollowerDto;
+
 import com.javabootcamp.socialmeli.dto.ResponseDto;
 import com.javabootcamp.socialmeli.dto.UserDto;
 import com.javabootcamp.socialmeli.model.User;
@@ -11,9 +14,10 @@ public interface IFollowService {
 
     void addFollow(User follower, User followed);
 
-    List<FollowerDto> searchFollowersByUser(int idUser);
 
-    List<UserDto> searchFollowedByUser(User user);
+    List<FollowedSellersDto> searchFollowersByUser(User user);
+
+    List<User> searchFollowedByUser(User user);
 
     ResponseDto deleteFollow(Integer followerId, Integer followedId);
 

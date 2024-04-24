@@ -1,6 +1,11 @@
 package com.javabootcamp.socialmeli.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.javabootcamp.socialmeli.dto.FollowedSellersDto;
+import com.javabootcamp.socialmeli.dto.SellerDto;
+import com.javabootcamp.socialmeli.dto.UserDto;
+
 import com.javabootcamp.socialmeli.dto.ClientDto;
 
 import com.javabootcamp.socialmeli.exception.EntityNotFoundException;
@@ -16,7 +21,15 @@ import com.javabootcamp.socialmeli.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.Optional;
+
+
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -27,6 +40,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserServiceImpl implements IUserService{
 
+    private final FollowServiceImpl followService;
     private final UserRepository userRepository;
     private final IFollowService followService;
     
@@ -36,6 +50,8 @@ public class UserServiceImpl implements IUserService{
         return userRepository.getAllUsers().stream().map(u -> mapper.convertValue(u,UserDto.class)).collect(Collectors.toList());
 
     }
+
+
 
     @Override
     public SellerWithFollowersDTO searchFollowersById(Integer userId) {
@@ -56,8 +72,22 @@ public class UserServiceImpl implements IUserService{
     }
 
     @Override
-    public List<ClientDto> searchFollowerdById(Integer userId) {
-        return null;
+    public FollowedSellersDto searchFollowedById(Integer userId) {
+        ObjectMapper mapper = new ObjectMapper();
+        List<User> userList = followService.searchFollowedByUser(searchUserById(userId));
+
+        if (userList.isEmpty()) { //verifico si el usuario sigue a alguien
+            throw new EntityNotFoundException("No se encontraron seguidores");
+        }
+
+        List<UserDto> userDtos = userList.stream()
+                                .map(u -> mapper.convertValue(u, UserDto.class))
+                                .collect(Collectors.toList());
+
+        FollowedSellersDto followedSellersDto = new FollowedSellersDto(userId,
+                                                                        searchUserById(userId).getUsername(),
+                                                                        userDtos);
+        return followedSellersDto;
     }
 
     @Override
