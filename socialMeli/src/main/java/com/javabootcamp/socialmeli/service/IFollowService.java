@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IFollowService {
 
-    ResponseDto addFollow(User follower, User followed);
+    void addFollow(User follower, User followed);
 
     List<UserDto> searchFollowersByUser(User user);
 
