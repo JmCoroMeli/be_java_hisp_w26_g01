@@ -7,6 +7,5 @@ import java.util.List;
 
 public interface IPostService {
     ResponseDto addPost(PostDto postDto);
-
-    List<PostDto> getLastestPosts();
+    List<PostDto> findByTwoWeeksAgo();
 }

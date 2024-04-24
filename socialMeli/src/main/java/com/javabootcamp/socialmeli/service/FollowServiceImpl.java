@@ -3,10 +3,12 @@ package com.javabootcamp.socialmeli.service;
 import com.javabootcamp.socialmeli.dto.ResponseDto;
 import com.javabootcamp.socialmeli.dto.UserDto;
 import com.javabootcamp.socialmeli.model.User;
+import com.javabootcamp.socialmeli.repository.FollowRepository;
 
 import java.util.List;
 
 public class FollowServiceImpl implements IFollowService{
+
     @Override
     public ResponseDto addFollow(User follower, User followed) {
         return null;
