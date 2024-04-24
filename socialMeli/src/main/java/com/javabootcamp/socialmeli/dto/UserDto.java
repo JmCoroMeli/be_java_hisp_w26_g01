@@ -1,6 +1,8 @@
 package com.javabootcamp.socialmeli.dto;
 
+
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.javabootcamp.socialmeli.enums.UserType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,4 +17,6 @@ public class UserDto {
     private Integer id;
     @JsonProperty("user_name")
     private String username;
+    private UserType userType;
+
 }

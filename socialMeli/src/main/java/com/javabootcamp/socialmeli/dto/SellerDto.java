@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 */
 public class SellerDto {
+    private int user_id;
 }

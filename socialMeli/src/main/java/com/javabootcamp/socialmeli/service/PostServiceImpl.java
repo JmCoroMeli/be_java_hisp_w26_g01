@@ -8,11 +8,10 @@ import com.javabootcamp.socialmeli.model.User;
 import com.javabootcamp.socialmeli.repository.PostRepository;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor

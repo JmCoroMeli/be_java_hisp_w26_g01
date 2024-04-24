@@ -1,31 +1,54 @@
 package com.javabootcamp.socialmeli.service;
 
 import com.javabootcamp.socialmeli.dto.FollowedSellersDto;
+
+import com.javabootcamp.socialmeli.dto.FollowerDto;
 import com.javabootcamp.socialmeli.dto.ResponseDto;
+import com.javabootcamp.socialmeli.dto.SellerWithFollowersDTO;
 import com.javabootcamp.socialmeli.dto.UserDto;
+import com.javabootcamp.socialmeli.exception.ResourceAlreadyExistsException;
+import com.javabootcamp.socialmeli.model.Follow;
 import com.javabootcamp.socialmeli.model.User;
 import com.javabootcamp.socialmeli.repository.FollowRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 import java.util.List;
 
+@Service
+@RequiredArgsConstructor
 public class FollowServiceImpl implements IFollowService{
+
 
     private final FollowRepository followRepository;
 
-    public FollowServiceImpl(FollowRepository followRepository) {
-        this.followRepository = followRepository;
+
+    @Override
+    public void addFollow(User follower, User followed) {
+        followRepository.findByFollowerIdAndFollowedId(follower.getId(),followed.getId())
+                .ifPresent((v) -> {throw new ResourceAlreadyExistsException("Follow already exists");});
+        followRepository.add(new Follow(follower, followed, LocalDate.now()));
     }
 
     @Override
-    public ResponseDto addFollow(User follower, User followed) {
-        return null;
-    }
 
-    @Override
-    public List<FollowedSellersDto> searchFollowersByUser(User user) {
+    public List<FollowerDto> searchFollowersByUser(int idUser) {
 
-        return null;
+        List<User> listFollowers = followRepository.findFollowersById(idUser);
+
+
+
+        return listFollowers.stream().map(follower ->{
+
+                    FollowerDto followerDto = new FollowerDto();
+                    followerDto.setUserId(follower.getId());
+                    followerDto.setUserName(follower.getUsername());
+                    return followerDto;})
+                .toList();
+
     }
 
     @Override
@@ -35,7 +58,14 @@ public class FollowServiceImpl implements IFollowService{
 
     @Override
     public ResponseDto deleteFollow(Integer followerId, Integer followedId) {
-        return null;
+        ResponseDto response = new ResponseDto();
+        try{
+            followRepository.delete(followerId,followedId);
+            response.setMessage("El usuario: " + followerId + " dejó de seguir a: " + followedId + " con exito.");
+        }catch (Exception e){
+            response.setMessage(e.getMessage());
+        }
+        return response;
     }
 
     @Override
