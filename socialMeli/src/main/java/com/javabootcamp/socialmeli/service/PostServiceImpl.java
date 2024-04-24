@@ -8,13 +8,12 @@ import com.javabootcamp.socialmeli.model.User;
 import com.javabootcamp.socialmeli.repository.PostRepository;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
-
-import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
