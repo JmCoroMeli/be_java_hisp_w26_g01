@@ -2,6 +2,7 @@ package com.javabootcamp.socialmeli.service;
 
 import com.javabootcamp.socialmeli.dto.ClientDto;
 import com.javabootcamp.socialmeli.dto.SellerDto;
+import com.javabootcamp.socialmeli.exception.EntityNotFoundException;
 import com.javabootcamp.socialmeli.model.User;
 import com.javabootcamp.socialmeli.repository.UserRepository;
 
@@ -47,7 +48,7 @@ public class UserServiceImpl implements IUserService{
     public User searchUserById(Integer id) {
         Optional<User> user = userRepository.findById(id);
         if(user.isEmpty()){
-            //throw NotFoundExcepcion("No existe el usuario");
+            throw new EntityNotFoundException("No existe el usuario");
         }
         return user.get();
     }
