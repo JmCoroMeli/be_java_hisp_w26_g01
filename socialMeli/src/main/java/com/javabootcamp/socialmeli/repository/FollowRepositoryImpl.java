@@ -62,7 +62,7 @@ public class FollowRepositoryImpl implements FollowRepository {
      * @param followedId Id del vendedor seguido
      * @return Optional<Follow>
      */
-
+    @Override
     public Optional<Follow> findByFollowerIdAndFollowedId(Integer followerId, Integer followedId){
         return followsList
             .stream()
