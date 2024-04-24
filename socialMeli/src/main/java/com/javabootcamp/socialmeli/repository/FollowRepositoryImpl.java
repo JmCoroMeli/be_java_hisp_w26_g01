@@ -6,7 +6,9 @@ import java.util.Optional;
 
 import com.javabootcamp.socialmeli.model.Follow;
 import com.javabootcamp.socialmeli.model.User;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class FollowRepositoryImpl implements FollowRepository {
 
     private List<Follow> followsList;
@@ -58,7 +60,7 @@ public class FollowRepositoryImpl implements FollowRepository {
      * @param followedId Id del vendedor seguido
      * @return Optional<Follow>
      */
-
+    @Override
     public Optional<Follow> findByFollowerIdAndFollowedId(Integer followerId, Integer followedId){
         return followsList
             .stream()

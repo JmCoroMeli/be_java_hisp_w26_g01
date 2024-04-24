@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 import com.javabootcamp.socialmeli.model.User;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class UserRepositoryImpl implements UserRepository{
 
     private List<User> usersList;
