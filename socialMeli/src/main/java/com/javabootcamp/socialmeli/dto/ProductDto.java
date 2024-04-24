@@ -1,4 +1,4 @@
-package com.javabootcamp.socialmeli.model;
+package com.javabootcamp.socialmeli.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Product {
+public class ProductDto {
     @JsonProperty("product_id")
     private Integer id;
     @JsonProperty("product_name")
