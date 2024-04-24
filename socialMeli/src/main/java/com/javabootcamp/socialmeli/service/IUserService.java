@@ -2,12 +2,13 @@ package com.javabootcamp.socialmeli.service;
 
 import com.javabootcamp.socialmeli.dto.ClientDto;
 import com.javabootcamp.socialmeli.dto.SellerDto;
+import com.javabootcamp.socialmeli.dto.SellerWithFollowersDTO;
 
 import java.util.List;
 
 public interface IUserService {
 
-    List<SellerDto> searchFollowersById(Integer userId);
+    SellerWithFollowersDTO searchFollowersById(Integer userId);
 
     List<ClientDto> searchFollowerdById(Integer userId);
 

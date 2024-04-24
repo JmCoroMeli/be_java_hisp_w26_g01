@@ -6,7 +6,9 @@ import java.util.Optional;
 
 import com.javabootcamp.socialmeli.model.Follow;
 import com.javabootcamp.socialmeli.model.User;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class FollowRepositoryImpl implements FollowRepository {
 
     private List<Follow> followsList;
