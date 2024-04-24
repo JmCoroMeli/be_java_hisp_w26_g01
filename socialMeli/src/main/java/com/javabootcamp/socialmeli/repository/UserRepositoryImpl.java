@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Repository;
+
 import com.javabootcamp.socialmeli.model.User;
 
+@Repository
 public class UserRepositoryImpl implements UserRepository{
 
     private List<User> usersList;
