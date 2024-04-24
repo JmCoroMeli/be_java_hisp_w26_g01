@@ -2,8 +2,10 @@ package com.javabootcamp.socialmeli.service;
 
 import com.javabootcamp.socialmeli.dto.ClientDto;
 import com.javabootcamp.socialmeli.dto.LastPostDto;
+import com.javabootcamp.socialmeli.dto.PostDto;
 import com.javabootcamp.socialmeli.dto.SellerDto;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,12 +59,11 @@ public class UserServiceImpl implements IUserService{
     @Override
     public LastPostDto getPostFromLastTwoWeeks(Integer userId) {
         User user = searchUserById(userId);
-
-        postService.findByTwoWeeksAgo()
-
-
-
-
-
+        List<Integer> sellerList=new ArrayList<>();
+        List<PostDto> postsDto= postService.findByTwoWeeksAgo( sellerList);
+        if(postsDto.isEmpty()){
+            throw new EntityNotFoundException("No existen posteos de los vendedores seguidos.");
+        }
+        return new LastPostDto(user.getId(),postsDto);
     }
 }
