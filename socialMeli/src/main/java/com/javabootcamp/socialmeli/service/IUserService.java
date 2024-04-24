@@ -13,11 +13,9 @@ import java.util.List;
 
 public interface IUserService {
 
-    List<SellerDto> searchFollowersById(Integer userId);
     FollowedSellersDto searchFollowedById(Integer userId);
     List<UserDto> getAllUsers();
     SellerWithFollowersDTO searchFollowersById(Integer userId);
-    List<ClientDto> searchFollowerdById(Integer userId);
     Integer countFollowersById(Integer userId);
     ResponseDto addFollower(Integer followerdId, Integer followedId);
     ResponseDto deleteFollow(Integer followerId, Integer followedId);

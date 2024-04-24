@@ -15,9 +15,10 @@ public interface IFollowService {
     void addFollow(User follower, User followed);
 
 
-    List<FollowedSellersDto> searchFollowersByUser(User user);
+    List<FollowerDto> searchFollowersByUser(int idUser);
 
-    List<User> searchFollowedByUser(User user);
+
+    List<User> searchFollowedByUser(Integer idUser);
 
     ResponseDto deleteFollow(Integer followerId, Integer followedId);
 

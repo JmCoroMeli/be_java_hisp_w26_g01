@@ -40,7 +40,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserServiceImpl implements IUserService{
 
-    private final FollowServiceImpl followService;
     private final UserRepository userRepository;
     private final IFollowService followService;
     
@@ -57,10 +56,9 @@ public class UserServiceImpl implements IUserService{
     public SellerWithFollowersDTO searchFollowersById(Integer userId) {
         Optional<User> user = userRepository.findById(userId);
 
-        if(!user.isPresent()) throw new EntityNotFoundException("No existe un usuario con id: + " + userId);
+        if(user.isEmpty()) throw new EntityNotFoundException("No existe un usuario con id: + " + userId);
 
         SellerWithFollowersDTO sellerWithFollowersDTO = new SellerWithFollowersDTO();
-
 
         List<FollowerDto> followersDto  = followService.searchFollowersByUser(userId);
 
@@ -74,8 +72,7 @@ public class UserServiceImpl implements IUserService{
     @Override
     public FollowedSellersDto searchFollowedById(Integer userId) {
         ObjectMapper mapper = new ObjectMapper();
-        List<User> userList = followService.searchFollowedByUser(searchUserById(userId));
-
+        List<User> userList = followService.searchFollowedByUser(userId);
         if (userList.isEmpty()) { //verifico si el usuario sigue a alguien
             throw new EntityNotFoundException("No se encontraron seguidores");
         }

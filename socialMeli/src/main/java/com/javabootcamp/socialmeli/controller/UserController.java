@@ -47,7 +47,8 @@ public class UserController {
     @PostMapping(path = "{userId}/follow/{userToFollow}")
     public ResponseEntity<ResponseDto> followUser(@PathVariable Integer userId, @PathVariable Integer userToFollow) {
         return ResponseEntity.ok(userService.addFollower(userId, userToFollow));
-      
+    }
+
     @GetMapping(path = "/{userId}/followed/list")
     public ResponseEntity<?> getFollowedByUserId(@PathVariable Integer userId) {
         return new ResponseEntity<>(userService.searchFollowedById(userId), HttpStatus.OK);

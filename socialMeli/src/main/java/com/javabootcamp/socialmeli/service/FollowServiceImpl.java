@@ -34,26 +34,19 @@ public class FollowServiceImpl implements IFollowService{
     }
 
     @Override
-
     public List<FollowerDto> searchFollowersByUser(int idUser) {
-
         List<User> listFollowers = followRepository.findFollowersById(idUser);
-
-
-
         return listFollowers.stream().map(follower ->{
-
                     FollowerDto followerDto = new FollowerDto();
                     followerDto.setUserId(follower.getId());
                     followerDto.setUserName(follower.getUsername());
                     return followerDto;})
                 .toList();
-
     }
 
     @Override
-    public List<User> searchFollowedByUser(User user) {
-        return followRepository.findFollowedsById(user.getId());
+    public List<User> searchFollowedByUser(Integer userId) {
+        return followRepository.findFollowedsById(userId);
     }
 
     @Override
