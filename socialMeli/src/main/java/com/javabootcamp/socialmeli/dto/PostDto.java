@@ -9,4 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class PostDto {
+    private int user_id;
 }

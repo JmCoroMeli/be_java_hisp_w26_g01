@@ -6,7 +6,9 @@ import java.util.Optional;
 
 import com.javabootcamp.socialmeli.model.Follow;
 import com.javabootcamp.socialmeli.model.User;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class FollowRepositoryImpl implements FollowRepository {
 
     private List<Follow> followsList;
@@ -22,8 +24,10 @@ public class FollowRepositoryImpl implements FollowRepository {
 
     @Override
     public void delete(Integer followerId, Integer followedId) {
-        //TODO
-
+        Optional<Follow> followFound = findByFollowerIdAndFollowedId(followerId,followedId);
+        if (followFound.isPresent()){
+            followsList.remove(followFound);
+        }
     }
 
     @Override

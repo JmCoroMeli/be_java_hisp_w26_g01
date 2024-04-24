@@ -1,13 +1,32 @@
 package com.javabootcamp.socialmeli.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.javabootcamp.socialmeli.service.IUserService;
+import com.javabootcamp.socialmeli.service.UserServiceImpl;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/users")
 public class UserController {
+    IUserService userService;
 
+    public UserController(UserServiceImpl userService) {
+        this.userService = userService;
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<?> getAllUsers(){
+        return new ResponseEntity<>(userService.getAllUsers(),HttpStatus.OK);
+    }
+
+
+
+
+    @DeleteMapping("{userId}/unfollow/{userIdToUnfollow}")
+    public ResponseEntity<?> unfollow(@PathVariable Integer userId, @PathVariable Integer userIdToUnfollow){
+        return new ResponseEntity<>(userService.deleteFollow(userId,userIdToUnfollow), HttpStatus.OK);
+    }
 }

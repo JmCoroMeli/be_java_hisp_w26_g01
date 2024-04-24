@@ -3,7 +3,9 @@ package com.javabootcamp.socialmeli.repository;
 import java.util.List;
 
 import com.javabootcamp.socialmeli.model.Post;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class PostRepositoryImpl implements PostRepository{
 
     @Override
