@@ -2,6 +2,7 @@ package com.javabootcamp.socialmeli.dto;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
@@ -13,7 +14,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PostDto {
     @JsonProperty("user_id")
-    private Integer id;
+    private Integer idUser;
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate date;
     private ProductDto product;
     private Integer category;
