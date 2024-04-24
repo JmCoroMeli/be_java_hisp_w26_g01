@@ -3,7 +3,6 @@ package com.javabootcamp.socialmeli.controller;
 import com.javabootcamp.socialmeli.dto.SellerWithFollowersDTO;
 import com.javabootcamp.socialmeli.dto.ResponseDto;
 import com.javabootcamp.socialmeli.service.IUserService;
-import com.javabootcamp.socialmeli.service.UserServiceImpl;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,9 +32,8 @@ public class UserController {
         return new ResponseEntity<>(userService.deleteFollow(userId,userIdToUnfollow), HttpStatus.OK);
     }
 
-    @GetMapping
-    @RequestMapping("/{userId}/followers/list")
-    public ResponseEntity<SellerWithFollowersDTO> getFollowersOfSeller(@RequestParam int userId){
+    @GetMapping("/{userId}/followers/list")
+    public ResponseEntity<SellerWithFollowersDTO> getFollowersOfSeller(@RequestParam("userId") int userId){
 
         SellerWithFollowersDTO response = userService.searchFollowersById(userId);
 
