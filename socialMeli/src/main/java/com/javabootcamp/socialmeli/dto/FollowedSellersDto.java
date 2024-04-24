@@ -5,12 +5,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDto {
+public class FollowedSellersDto {
     @JsonProperty("user_id")
-    private Integer id;
+    private Integer userId;
     @JsonProperty("user_name")
-    private String username;
+    private String userName;
+    @JsonProperty("followed")
+    private List<UserDto> followed;
 }
