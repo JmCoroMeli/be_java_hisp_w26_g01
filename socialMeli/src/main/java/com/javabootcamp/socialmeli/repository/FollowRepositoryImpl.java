@@ -22,10 +22,8 @@ public class FollowRepositoryImpl implements FollowRepository {
         followsList.add(follow);
     }
 
-    @Override
-    public void delete(Integer followerId, Integer followedId) {
-        //TODO
-
+    public void delete(Follow follow){
+        followsList.remove(follow);
     }
 
     @Override
@@ -60,7 +58,7 @@ public class FollowRepositoryImpl implements FollowRepository {
      * @param followedId Id del vendedor seguido
      * @return Optional<Follow>
      */
-
+    @Override
     public Optional<Follow> findByFollowerIdAndFollowedId(Integer followerId, Integer followedId){
         return followsList
             .stream()
