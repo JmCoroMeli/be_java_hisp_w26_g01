@@ -7,12 +7,20 @@ import com.javabootcamp.socialmeli.dto.SellerDto;
 import com.javabootcamp.socialmeli.dto.UserDto;
 
 import com.javabootcamp.socialmeli.dto.ClientDto;
+import com.javabootcamp.socialmeli.dto.LastPostDto;
+import com.javabootcamp.socialmeli.dto.PostDto;
 
 import com.javabootcamp.socialmeli.exception.EntityNotFoundException;
 import com.javabootcamp.socialmeli.dto.SellerWithFollowersDTO;
 import com.javabootcamp.socialmeli.dto.FollowerDto;
 import com.javabootcamp.socialmeli.dto.ResponseDto;
 import com.javabootcamp.socialmeli.dto.SellerDto;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import com.javabootcamp.socialmeli.exception.EntityNotFoundException;
 import com.javabootcamp.socialmeli.dto.UserDto;
 import com.javabootcamp.socialmeli.repository.UserRepository;
 import com.javabootcamp.socialmeli.model.User;
@@ -41,8 +49,10 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements IUserService{
 
     private final UserRepository userRepository;
+    private final IPostService postService;
+
     private final IFollowService followService;
-    
+
     @Override
     public List<UserDto> getAllUsers() {
         ObjectMapper mapper = new ObjectMapper();
@@ -103,7 +113,7 @@ public class UserServiceImpl implements IUserService{
     }
 
     @Override
-    public ResponseDto deleteFollow(Integer followerId, Integer followedId) {
+    public ResponseDto deleteFollower(Integer followerId, Integer followedId) {
         return followService.deleteFollow(followerId,followedId);
     }
 
@@ -114,5 +124,13 @@ public class UserServiceImpl implements IUserService{
             throw new EntityNotFoundException("No existe el usuario");
         }
         return user.get();
+    }
+
+    @Override
+    public List<Integer> getListSellerId(Integer userId) {
+        //valido que exista usuario
+        User user = searchUserById(userId);
+        //retorno una lista solo con los id's
+        return searchFollowedById(user.getId()).getFollowed().stream().map(UserDto::getId).toList();
     }
 }

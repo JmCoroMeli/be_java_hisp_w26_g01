@@ -1,12 +1,6 @@
 package com.javabootcamp.socialmeli.service;
 
-import com.javabootcamp.socialmeli.dto.ClientDto;
-
-import com.javabootcamp.socialmeli.dto.FollowedSellersDto;
-import com.javabootcamp.socialmeli.dto.ResponseDto;
-import com.javabootcamp.socialmeli.dto.SellerDto;
-import com.javabootcamp.socialmeli.dto.UserDto;
-import com.javabootcamp.socialmeli.dto.SellerWithFollowersDTO;
+import com.javabootcamp.socialmeli.dto.*;
 import com.javabootcamp.socialmeli.model.User;
 
 import java.util.List;
@@ -17,7 +11,10 @@ public interface IUserService {
     List<UserDto> getAllUsers();
     SellerWithFollowersDTO searchFollowersById(Integer userId);
     Integer countFollowersById(Integer userId);
+
     ResponseDto addFollower(Integer followerdId, Integer followedId);
-    ResponseDto deleteFollow(Integer followerId, Integer followedId);
+
+    ResponseDto deleteFollower(Integer followerId, Integer followedId);
+    List<Integer> getListSellerId(Integer userId);
     User searchUserById(Integer id);
 }

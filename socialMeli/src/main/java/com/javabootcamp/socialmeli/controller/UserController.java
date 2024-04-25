@@ -33,7 +33,8 @@ public class UserController {
 
     @DeleteMapping("{userId}/unfollow/{userIdToUnfollow}")
     public ResponseEntity<?> unfollow(@PathVariable Integer userId, @PathVariable Integer userIdToUnfollow){
-        return new ResponseEntity<>(userService.deleteFollow(userId,userIdToUnfollow), HttpStatus.OK);
+        userService.deleteFollower(userId,userIdToUnfollow);
+        return new ResponseEntity<>(userService.deleteFollower(userId,userIdToUnfollow), HttpStatus.OK);
     }
 
     @GetMapping("/{userId}/followers/list")

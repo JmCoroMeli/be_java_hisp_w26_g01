@@ -1,9 +1,9 @@
 package com.javabootcamp.socialmeli.repository;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.stereotype.Repository;
+import java.util.Locale;
 
 import com.javabootcamp.socialmeli.model.Post;
 import org.springframework.stereotype.Repository;
@@ -23,9 +23,11 @@ public class PostRepositoryImpl implements PostRepository{
     }
 
     @Override
-    public List<Post> findByTwoWeeksAgo() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByTwoWeeksAgo'");
+    public List<Post> findByTwoWeeksAgo(List<Integer> sellersId) {
+        LocalDate twoWeeksAgo = LocalDate.now().minusWeeks(2);
+        return postsList.stream().filter(post -> (post.getPublicationDate().isAfter(twoWeeksAgo)
+                || post.getPublicationDate().isEqual(twoWeeksAgo))
+                && sellersId.contains(post.getUser().getId())).toList();
     }
 
 }

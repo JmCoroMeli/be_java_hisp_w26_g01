@@ -10,6 +10,7 @@ import com.javabootcamp.socialmeli.exception.ResourceAlreadyExistsException;
 import com.javabootcamp.socialmeli.model.Follow;
 import com.javabootcamp.socialmeli.model.User;
 import com.javabootcamp.socialmeli.repository.FollowRepository;
+import com.javabootcamp.socialmeli.repository.FollowRepository;
 
 
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class FollowServiceImpl implements IFollowService{
+
 
 
     private final FollowRepository followRepository;
