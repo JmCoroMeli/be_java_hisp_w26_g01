@@ -56,6 +56,31 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    public FollowedSellersDto searchFollowedById(Integer userId, OrderType order) {
+        ObjectMapper mapper = new ObjectMapper();
+
+        if(order.equals(OrderType.date_asc) || order.equals(OrderType.date_desc)){
+            throw new IllegalActionException("Invalid order type.");
+        }
+
+        List<User> userList = followService.searchFollowedByUserOrder(userId,order);
+        if (userList.isEmpty()) { // verifico si el usuario sigue a alguien
+            throw new EntityNotFoundException("No se encontraron seguidores");
+        }
+
+        List<UserDto> userDtos = userList.stream()
+                .map(u -> new UserDto(
+                        u.getId(),
+                        u.getUsername()
+                ))
+                .toList();
+
+        return new FollowedSellersDto(userId,
+                searchUserById(userId).getUsername(),
+                userDtos);
+    }
+
+    @Override
     public SellerWithFollowersDTO searchFollowersById(Integer userId, OrderType order){
         User user = searchUserById(userId);
         SellerWithFollowersDTO sellerWithFollowersDTO = new SellerWithFollowersDTO();

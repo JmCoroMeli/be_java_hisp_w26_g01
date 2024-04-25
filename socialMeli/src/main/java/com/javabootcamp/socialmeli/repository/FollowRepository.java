@@ -11,6 +11,9 @@ public interface FollowRepository {
     void delete(Follow follow);
     List<User> findFollowersById(Integer id);
     List<User> findFollowedsById(Integer id);
+    List<User> findFollowedsByIdAsc(Integer id);
+
+    List<User> findFollowedsByIdDesc(Integer id);
     int countFollowersById(Integer id);
     Optional<Follow> findByFollowerIdAndFollowedId(Integer followerId, Integer followedId);
     List<User> searchFollowersByUserAndOrderAsc(Integer id);

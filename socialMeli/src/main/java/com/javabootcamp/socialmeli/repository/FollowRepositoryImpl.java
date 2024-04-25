@@ -47,6 +47,16 @@ public class FollowRepositoryImpl implements FollowRepository {
     }
 
     @Override
+    public List<User> findFollowedsByIdAsc(Integer id) {
+        return findFollowedsById(id).stream().sorted(Comparator.comparing(User::getUsername)).toList();
+    }
+
+    @Override
+    public List<User> findFollowedsByIdDesc(Integer id) {
+        return findFollowedsById(id).stream().sorted(Comparator.comparing(User::getUsername).reversed()).toList();
+    }
+
+    @Override
     public int countFollowersById(Integer id) {
         return (int) followsList
                 .stream()

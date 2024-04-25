@@ -10,6 +10,7 @@ import com.javabootcamp.socialmeli.model.Follow;
 import com.javabootcamp.socialmeli.model.User;
 import com.javabootcamp.socialmeli.repository.FollowRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
@@ -75,6 +76,16 @@ public class FollowServiceImpl implements IFollowService {
                 return followerDto;
             })
             .toList();
+    }
+
+    @Override
+    public List<User> searchFollowedByUserOrder(Integer idUser, OrderType order) {
+
+        if(order.equals(OrderType.name_asc)){
+            return followRepository.findFollowedsByIdAsc(idUser);
+        }
+
+        return followRepository.findFollowedsByIdDesc(idUser);
     }
 
     @Override

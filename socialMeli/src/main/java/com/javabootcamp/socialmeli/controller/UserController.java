@@ -1,6 +1,7 @@
 package com.javabootcamp.socialmeli.controller;
 
 
+import com.javabootcamp.socialmeli.dto.FollowedSellersDto;
 import com.javabootcamp.socialmeli.dto.SellerWithFollowersDTO;
 import com.javabootcamp.socialmeli.enums.OrderType;
 import com.javabootcamp.socialmeli.dto.ResponseDto;
@@ -61,8 +62,17 @@ public class UserController {
     }
 
     @GetMapping(path = "/{userId}/followed/list")
-    public ResponseEntity<?> getFollowedByUserId(@PathVariable Integer userId) {
-        return new ResponseEntity<>(userService.searchFollowedById(userId), HttpStatus.OK);
+    public ResponseEntity<FollowedSellersDto> getFollowedByUserId(@PathVariable Integer userId, @RequestParam(required = false) OrderType order) {
+
+        FollowedSellersDto response;
+        if(Objects.isNull(order)){
+            response = userService.searchFollowedById(userId);
+        }
+        else{
+            response = userService.searchFollowedById(userId,order);
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+
 
     }
 }
