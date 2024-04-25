@@ -13,6 +13,5 @@ import lombok.NoArgsConstructor;
 public class User {
     private Integer id;
     private String username;
-    @JsonIgnore
     private UserType userType;
 }

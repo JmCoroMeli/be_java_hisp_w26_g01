@@ -17,12 +17,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 @RequiredArgsConstructor
-public class PostServiceImpl implements IPostService {
+public class PostServiceImpl implements PostService {
 
     private static final AtomicInteger CONTADOR = new AtomicInteger(1);
 
     private final PostRepository postRepository;
-    private final IUserService userService;
+    private final UserService userService;
 
     @Override
     public void addPost(PostDto postDto) {

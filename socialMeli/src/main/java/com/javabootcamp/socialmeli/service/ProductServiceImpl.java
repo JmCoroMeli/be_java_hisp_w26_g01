@@ -16,10 +16,10 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ProductServiceImpl implements IProductService{
+public class ProductServiceImpl implements ProductService {
 
-    private final IPostService postService;
-    private final IUserService userService;
+    private final PostService postService;
+    private final UserService userService;
 
     @Override
     public Product addProduct(Product product) {
@@ -33,7 +33,7 @@ public class ProductServiceImpl implements IProductService{
          if(order.equals(OrderType.name_asc) || order.equals(OrderType.name_desc)){
              throw new IllegalActionException("Invalid order type.");
          }
-         
+
         List<Integer> sellerList=userService.getListSellerId(userId);
 
 
@@ -48,7 +48,7 @@ public class ProductServiceImpl implements IProductService{
         }
 
         if(postsDto.isEmpty()){
-            throw new EntityNotFoundException("No existen posteos de los vendedores seguidos.");
+            throw new EntityNotFoundException("There are no posts from followed sellers.");
         }
         return new LastPostDto(userId,postsDto);
     }
@@ -60,7 +60,7 @@ public class ProductServiceImpl implements IProductService{
         //busco los posteos de las últimas dos semanas
         List<PostDto> postsDto= postService.findByTwoWeeksAgo( sellerList);
         if(postsDto.isEmpty()){
-            throw new EntityNotFoundException("No existen posteos de los vendedores seguidos.");
+            throw new EntityNotFoundException("There are no posts from followed sellers.");
         }
         return new LastPostDto(userId,postsDto);
     }

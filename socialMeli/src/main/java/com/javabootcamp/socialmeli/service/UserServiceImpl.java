@@ -1,18 +1,14 @@
 package com.javabootcamp.socialmeli.service;
 
-import com.javabootcamp.socialmeli.dto.ClientDto;
 import com.javabootcamp.socialmeli.dto.FollowersCountDto;
-import com.javabootcamp.socialmeli.dto.SellerDto;
 import com.javabootcamp.socialmeli.enums.OrderType;
 import com.javabootcamp.socialmeli.enums.UserType;
 import com.javabootcamp.socialmeli.exception.IllegalActionException;
 import com.javabootcamp.socialmeli.dto.FollowedSellersDto;
 import com.javabootcamp.socialmeli.dto.UserDto;
 import com.javabootcamp.socialmeli.dto.SellerWithFollowersDTO;
-import com.javabootcamp.socialmeli.dto.FollowerDto;
 import com.javabootcamp.socialmeli.dto.ResponseDto;
 import com.javabootcamp.socialmeli.model.User;
-import com.javabootcamp.socialmeli.repository.FollowRepository;
 import com.javabootcamp.socialmeli.repository.UserRepository;
 import com.javabootcamp.socialmeli.exception.EntityNotFoundException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,10 +20,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements IUserService {
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-    private final IFollowService followService;
+    private final FollowService followService;
 
     @Override
     public List<UserDto> getAllUsers() {
@@ -46,7 +42,7 @@ public class UserServiceImpl implements IUserService {
 
         SellerWithFollowersDTO sellerWithFollowersDTO = new SellerWithFollowersDTO();
 
-        List<FollowerDto> followersDto = followService.searchFollowersByUser(userId);
+        List<UserDto> followersDto = followService.searchFollowersByUser(userId);
 
         sellerWithFollowersDTO.setUserId(user.getId());
         sellerWithFollowersDTO.setUserName(user.getUsername());
@@ -55,36 +51,18 @@ public class UserServiceImpl implements IUserService {
         return sellerWithFollowersDTO;
     }
 
-    @Override
-    public FollowedSellersDto searchFollowedById(Integer userId, OrderType order) {
-        ObjectMapper mapper = new ObjectMapper();
 
-        if(order.equals(OrderType.date_asc) || order.equals(OrderType.date_desc)){
-            throw new IllegalActionException("Invalid order type.");
-        }
-
-        List<User> userList = followService.searchFollowedByUserOrder(userId,order);
-        if (userList.isEmpty()) { // verifico si el usuario sigue a alguien
-            throw new EntityNotFoundException("No se encontraron seguidores");
-        }
-
-        List<UserDto> userDtos = userList.stream()
-                .map(u -> new UserDto(
-                        u.getId(),
-                        u.getUsername()
-                ))
-                .toList();
-
-        return new FollowedSellersDto(userId,
-                searchUserById(userId).getUsername(),
-                userDtos);
-    }
 
     @Override
     public SellerWithFollowersDTO searchFollowersById(Integer userId, OrderType order){
+
+        if(order.equals(OrderType.date_desc) || order.equals(OrderType.date_asc)){
+            throw new IllegalActionException("Invalid order type.");
+        }
+
         User user = searchUserById(userId);
         SellerWithFollowersDTO sellerWithFollowersDTO = new SellerWithFollowersDTO();
-        List<FollowerDto> followersDto;
+        List<UserDto> followersDto;
 
         if(order.equals(OrderType.name_asc)){
             followersDto = followService.searchFollowersByUserAndOrderAsc(userId);
@@ -102,10 +80,32 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public FollowedSellersDto searchFollowedById(Integer userId) {
-        ObjectMapper mapper = new ObjectMapper();
         List<User> userList = followService.searchFollowedByUser(userId);
         if (userList.isEmpty()) { // verifico si el usuario sigue a alguien
-            throw new EntityNotFoundException("No se encontraron seguidores");
+            throw new EntityNotFoundException("There are no followed users");
+        }
+
+        List<UserDto> userDtos = userList.stream()
+                .map(u -> new UserDto(
+                        u.getId(),
+                        u.getUsername()
+                ))
+                .toList();
+
+        return new FollowedSellersDto(userId,
+                searchUserById(userId).getUsername(),
+                userDtos);
+    }
+    @Override
+    public FollowedSellersDto searchFollowedById(Integer userId, OrderType order) {
+
+        if(order.equals(OrderType.date_asc) || order.equals(OrderType.date_desc)){
+            throw new IllegalActionException("Invalid order type.");
+        }
+
+        List<User> userList = followService.searchFollowedByUserOrder(userId,order);
+        if (userList.isEmpty()) { // verifico si el usuario sigue a alguien
+            throw new EntityNotFoundException("There are no followed users.");
         }
 
         List<UserDto> userDtos = userList.stream()
@@ -151,7 +151,7 @@ public class UserServiceImpl implements IUserService {
     public User searchUserById(Integer id) {
         return userRepository
                 .findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("User does not exist"));
+                .orElseThrow(() -> new EntityNotFoundException("User does not exist."));
     }
 
     @Override

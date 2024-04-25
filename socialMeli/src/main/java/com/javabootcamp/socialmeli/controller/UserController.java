@@ -5,7 +5,7 @@ import com.javabootcamp.socialmeli.dto.FollowedSellersDto;
 import com.javabootcamp.socialmeli.dto.SellerWithFollowersDTO;
 import com.javabootcamp.socialmeli.enums.OrderType;
 import com.javabootcamp.socialmeli.dto.ResponseDto;
-import com.javabootcamp.socialmeli.service.IUserService;
+import com.javabootcamp.socialmeli.service.UserService;
 
 import java.util.Objects;
 
@@ -26,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserController {
 
-  private final IUserService userService;
+  private final UserService userService;
 
     @GetMapping("/")
     public ResponseEntity<?> getAllUsers(){

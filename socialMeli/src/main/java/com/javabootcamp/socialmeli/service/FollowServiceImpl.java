@@ -1,8 +1,7 @@
 package com.javabootcamp.socialmeli.service;
 
-import com.javabootcamp.socialmeli.dto.FollowersCountDto;
-import com.javabootcamp.socialmeli.dto.FollowerDto;
 import com.javabootcamp.socialmeli.dto.ResponseDto;
+import com.javabootcamp.socialmeli.dto.UserDto;
 import com.javabootcamp.socialmeli.enums.OrderType;
 import com.javabootcamp.socialmeli.exception.EntityNotFoundException;
 import com.javabootcamp.socialmeli.exception.ResourceAlreadyExistsException;
@@ -10,14 +9,13 @@ import com.javabootcamp.socialmeli.model.Follow;
 import com.javabootcamp.socialmeli.model.User;
 import com.javabootcamp.socialmeli.repository.FollowRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class FollowServiceImpl implements IFollowService {
+public class FollowServiceImpl implements FollowService {
 
     private final FollowRepository followRepository;
 
@@ -31,15 +29,15 @@ public class FollowServiceImpl implements IFollowService {
     }
 
     @Override
-    public List<FollowerDto> searchFollowersByUser(int idUser) {
+    public List<UserDto> searchFollowersByUser(int idUser) {
         List<User> listFollowers = followRepository.findFollowersById(idUser);
         return listFollowers
                 .stream()
                 .map(follower -> {
-                    FollowerDto followerDto = new FollowerDto();
-                    followerDto.setUserId(follower.getId());
-                    followerDto.setUserName(follower.getUsername());
-                    return followerDto;
+                    UserDto userDto = new UserDto();
+                    userDto.setId(follower.getId());
+                    userDto.setUsername(follower.getUsername());
+                    return userDto;
                 })
                 .toList();
     }
@@ -65,14 +63,14 @@ public class FollowServiceImpl implements IFollowService {
     }
 
     @Override
-    public List<FollowerDto> searchFollowersByUserAndOrderDesc(Integer userId) {
+    public List<UserDto> searchFollowersByUserAndOrderDesc(Integer userId) {
         return followRepository
             .searchFollowersByUserAndOrderDesc(userId)
             .stream()
             .map(follower -> {
-                FollowerDto followerDto = new FollowerDto();
-                followerDto.setUserId(follower.getId());
-                followerDto.setUserName(follower.getUsername());
+                UserDto followerDto = new UserDto();
+                followerDto.setId(follower.getId());
+                followerDto.setUsername(follower.getUsername());
                 return followerDto;
             })
             .toList();
@@ -89,14 +87,14 @@ public class FollowServiceImpl implements IFollowService {
     }
 
     @Override
-    public List<FollowerDto> searchFollowersByUserAndOrderAsc(Integer userId) {
+    public List<UserDto> searchFollowersByUserAndOrderAsc(Integer userId) {
         return followRepository
             .searchFollowersByUserAndOrderAsc(userId)
             .stream()
             .map(follower -> {
-                FollowerDto followerDto = new FollowerDto();
-                followerDto.setUserId(follower.getId());
-                followerDto.setUserName(follower.getUsername());
+                UserDto followerDto = new UserDto();
+                followerDto.setId(follower.getId());
+                followerDto.setUsername(follower.getUsername());
                 return followerDto;
             })
             .toList();

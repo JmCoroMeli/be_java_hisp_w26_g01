@@ -11,5 +11,5 @@ public class SellerWithFollowersDTO {
     @JsonProperty("user_name")
     private String userName;
     @JsonProperty("followers")
-    private List<FollowerDto> followers;
+    private List<UserDto> followers;
 }
