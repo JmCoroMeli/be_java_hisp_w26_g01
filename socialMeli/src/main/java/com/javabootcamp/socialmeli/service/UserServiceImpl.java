@@ -3,6 +3,7 @@ package com.javabootcamp.socialmeli.service;
 import com.javabootcamp.socialmeli.dto.ClientDto;
 import com.javabootcamp.socialmeli.dto.FollowersCountDto;
 import com.javabootcamp.socialmeli.dto.SellerDto;
+import com.javabootcamp.socialmeli.enums.OrderType;
 import com.javabootcamp.socialmeli.enums.UserType;
 import com.javabootcamp.socialmeli.exception.IllegalActionException;
 import com.javabootcamp.socialmeli.dto.FollowedSellersDto;
@@ -46,6 +47,26 @@ public class UserServiceImpl implements IUserService {
         SellerWithFollowersDTO sellerWithFollowersDTO = new SellerWithFollowersDTO();
 
         List<FollowerDto> followersDto = followService.searchFollowersByUser(userId);
+
+        sellerWithFollowersDTO.setUserId(user.getId());
+        sellerWithFollowersDTO.setUserName(user.getUsername());
+        sellerWithFollowersDTO.setFollowers(followersDto);
+
+        return sellerWithFollowersDTO;
+    }
+
+    @Override
+    public SellerWithFollowersDTO searchFollowersById(Integer userId, OrderType order){
+        User user = searchUserById(userId);
+        SellerWithFollowersDTO sellerWithFollowersDTO = new SellerWithFollowersDTO();
+        List<FollowerDto> followersDto;
+
+        if(order.equals(OrderType.name_asc)){
+            followersDto = followService.searchFollowersByUserAndOrderAsc(userId);
+        }
+        else{
+            followersDto = followService.searchFollowersByUserAndOrderDesc(userId);
+        }
 
         sellerWithFollowersDTO.setUserId(user.getId());
         sellerWithFollowersDTO.setUserName(user.getUsername());

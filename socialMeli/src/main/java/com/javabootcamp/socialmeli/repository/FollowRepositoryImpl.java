@@ -1,9 +1,11 @@
 package com.javabootcamp.socialmeli.repository;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
+import com.javabootcamp.socialmeli.enums.OrderType;
 import com.javabootcamp.socialmeli.model.Follow;
 import com.javabootcamp.socialmeli.model.User;
 import org.springframework.stereotype.Repository;
@@ -64,5 +66,21 @@ public class FollowRepositoryImpl implements FollowRepository {
             .stream()
             .filter(f -> f.getFollower().getId().equals(followerId) && f.getFollowed().getId().equals(followedId))
             .findFirst();
+    }
+
+    @Override
+    public List<User> searchFollowersByUserAndOrderAsc(Integer id) {
+        return findFollowersById(id)
+            .stream()
+            .sorted(Comparator.comparing(User::getUsername))
+            .toList();
+    }
+
+    @Override
+    public List<User> searchFollowersByUserAndOrderDesc(Integer id) {
+        return findFollowersById(id)
+            .stream()
+            .sorted(Comparator.comparing(User::getUsername).reversed())
+            .toList();
     }
 }

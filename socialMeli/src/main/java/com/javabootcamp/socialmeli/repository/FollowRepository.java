@@ -13,4 +13,6 @@ public interface FollowRepository {
     List<User> findFollowedsById(Integer id);
     int countFollowersById(Integer id);
     Optional<Follow> findByFollowerIdAndFollowedId(Integer followerId, Integer followedId);
+    List<User> searchFollowersByUserAndOrderAsc(Integer id);
+    List<User> searchFollowersByUserAndOrderDesc(Integer id);
 }

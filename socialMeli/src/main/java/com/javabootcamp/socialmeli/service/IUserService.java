@@ -2,6 +2,7 @@ package com.javabootcamp.socialmeli.service;
 
 
 import com.javabootcamp.socialmeli.dto.*;
+import com.javabootcamp.socialmeli.enums.OrderType;
 import com.javabootcamp.socialmeli.model.User;
 
 import java.util.List;
@@ -11,6 +12,7 @@ public interface IUserService {
     FollowedSellersDto searchFollowedById(Integer userId);
     List<UserDto> getAllUsers();
     SellerWithFollowersDTO searchFollowersById(Integer userId);
+    SellerWithFollowersDTO searchFollowersById(Integer userId,OrderType order);
     FollowersCountDto countFollowersById(Integer userId);
 
     ResponseDto addFollower(Integer followerdId, Integer followedId);

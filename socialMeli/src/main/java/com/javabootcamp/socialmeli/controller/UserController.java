@@ -2,8 +2,11 @@ package com.javabootcamp.socialmeli.controller;
 
 
 import com.javabootcamp.socialmeli.dto.SellerWithFollowersDTO;
+import com.javabootcamp.socialmeli.enums.OrderType;
 import com.javabootcamp.socialmeli.dto.ResponseDto;
 import com.javabootcamp.socialmeli.service.IUserService;
+
+import java.util.Objects;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
@@ -39,10 +43,15 @@ public class UserController {
     }
 
     @GetMapping("/{userId}/followers/list")
-    public ResponseEntity<SellerWithFollowersDTO> getFollowersOfSeller(@PathVariable("userId") int userId){
+    public ResponseEntity<SellerWithFollowersDTO> getFollowersOfSeller(@PathVariable("userId") int userId,@RequestParam(required = false) OrderType order){
 
-        SellerWithFollowersDTO response = userService.searchFollowersById(userId);
-
+        SellerWithFollowersDTO response;
+        if(Objects.isNull(order)){
+            response = userService.searchFollowersById(userId);
+        }
+        else{
+            response = userService.searchFollowersById(userId,order);
+        }
         return ResponseEntity.status(200).body(response);
     }
 

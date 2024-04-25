@@ -3,6 +3,7 @@ package com.javabootcamp.socialmeli.service;
 import com.javabootcamp.socialmeli.dto.FollowersCountDto;
 import com.javabootcamp.socialmeli.dto.FollowerDto;
 import com.javabootcamp.socialmeli.dto.ResponseDto;
+import com.javabootcamp.socialmeli.enums.OrderType;
 import com.javabootcamp.socialmeli.exception.EntityNotFoundException;
 import com.javabootcamp.socialmeli.exception.ResourceAlreadyExistsException;
 import com.javabootcamp.socialmeli.model.Follow;
@@ -53,7 +54,7 @@ public class FollowServiceImpl implements IFollowService {
                 .findByFollowerIdAndFollowedId(followerId, followedId)
                 .orElseThrow(() -> new EntityNotFoundException("Follow does not found"));
         followRepository.delete(follow);
-        return new ResponseDto("User: " + followerId + " successfully stopped following: " + followerId);
+        return new ResponseDto("User: " + followerId + " successfully stopped following: " + followedId);
     }
 
     @Override
@@ -61,4 +62,34 @@ public class FollowServiceImpl implements IFollowService {
         Integer userId = user.getId();
         return followRepository.countFollowersById(userId);
     }
+
+    @Override
+    public List<FollowerDto> searchFollowersByUserAndOrderDesc(Integer userId) {
+        return followRepository
+            .searchFollowersByUserAndOrderDesc(userId)
+            .stream()
+            .map(follower -> {
+                FollowerDto followerDto = new FollowerDto();
+                followerDto.setUserId(follower.getId());
+                followerDto.setUserName(follower.getUsername());
+                return followerDto;
+            })
+            .toList();
+    }
+
+    @Override
+    public List<FollowerDto> searchFollowersByUserAndOrderAsc(Integer userId) {
+        return followRepository
+            .searchFollowersByUserAndOrderAsc(userId)
+            .stream()
+            .map(follower -> {
+                FollowerDto followerDto = new FollowerDto();
+                followerDto.setUserId(follower.getId());
+                followerDto.setUserName(follower.getUsername());
+                return followerDto;
+            })
+            .toList();
+    }
+
+
 }
