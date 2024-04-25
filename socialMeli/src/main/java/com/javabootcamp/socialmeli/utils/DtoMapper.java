@@ -17,6 +17,7 @@ public class DtoMapper {
 
     public static PostDto postToPostDto(Post post) {
         PostDto postDto = new PostDto();
+        postDto.setDate(post.getDate());
         postDto.setIdUser(post.getUser().getId());
         postDto.setProduct(productEntityToDto(post.getProduct()));
         postDto.setCategory(post.getCategory());

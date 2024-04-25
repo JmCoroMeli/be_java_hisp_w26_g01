@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class Post {
     private User user;
     private Integer id;
-    private LocalDate publicationDate;
+    private LocalDate date;
     private Product product;
     private Integer category;
     private Double price;
