@@ -1,5 +1,6 @@
 package com.javabootcamp.socialmeli.service;
 
+import com.javabootcamp.socialmeli.dto.FollowersCountDto;
 import com.javabootcamp.socialmeli.dto.FollowerDto;
 import com.javabootcamp.socialmeli.dto.ResponseDto;
 import com.javabootcamp.socialmeli.exception.EntityNotFoundException;
@@ -7,10 +8,8 @@ import com.javabootcamp.socialmeli.exception.ResourceAlreadyExistsException;
 import com.javabootcamp.socialmeli.model.Follow;
 import com.javabootcamp.socialmeli.model.User;
 import com.javabootcamp.socialmeli.repository.FollowRepository;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -58,7 +57,8 @@ public class FollowServiceImpl implements IFollowService {
     }
 
     @Override
-    public Integer countFollowersById(Integer userId) {
-        return null;
+    public int countFollowers(User user) {
+        Integer userId = user.getId();
+        return followRepository.countFollowersById(userId);
     }
 }

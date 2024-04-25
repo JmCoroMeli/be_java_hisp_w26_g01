@@ -1,18 +1,21 @@
 package com.javabootcamp.socialmeli.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
+import com.javabootcamp.socialmeli.dto.ClientDto;
+import com.javabootcamp.socialmeli.dto.FollowersCountDto;
+import com.javabootcamp.socialmeli.dto.SellerDto;
 import com.javabootcamp.socialmeli.dto.FollowedSellersDto;
 import com.javabootcamp.socialmeli.dto.UserDto;
-import com.javabootcamp.socialmeli.exception.EntityNotFoundException;
 import com.javabootcamp.socialmeli.dto.SellerWithFollowersDTO;
 import com.javabootcamp.socialmeli.dto.FollowerDto;
 import com.javabootcamp.socialmeli.dto.ResponseDto;
+import com.javabootcamp.socialmeli.model.User;
+import com.javabootcamp.socialmeli.repository.FollowRepository;
+import com.javabootcamp.socialmeli.repository.UserRepository;
+import com.javabootcamp.socialmeli.exception.EntityNotFoundException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.List;
 
-import com.javabootcamp.socialmeli.repository.UserRepository;
-import com.javabootcamp.socialmeli.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +24,6 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements IUserService {
 
     private final UserRepository userRepository;
-
     private final IFollowService followService;
 
     @Override
@@ -68,8 +70,9 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public Integer countFollowersById(Integer userId) {
-        return null;
+    public FollowersCountDto countFollowersById(Integer userId) {
+        User userToCount = searchUserById(userId);
+        return new FollowersCountDto(userToCount.getId(),userToCount.getUsername(),followService.countFollowers(userToCount));
     }
 
     @Override
