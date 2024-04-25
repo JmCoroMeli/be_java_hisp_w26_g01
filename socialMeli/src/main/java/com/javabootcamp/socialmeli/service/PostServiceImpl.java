@@ -57,4 +57,31 @@ public class PostServiceImpl implements IPostService {
         return postDtos;
     }
 
+    @Override
+    public List<PostDto> findByTwoWeeksAgoOrderAsc(List<Integer> sellersId) {
+        List<Post> posts = postRepository.findByTwoWeeksAgoOrderAsc(sellersId);
+        List<PostDto> postDtos = new ArrayList<>();
+        if (posts.isEmpty()) {
+            return postDtos;
+        } else {
+            postDtos = posts.stream()
+                    .map(p -> DtoMapper.postToPostDto(p))
+                    .toList();
+        }
+        return postDtos;
+    }
+
+    @Override
+    public List<PostDto> findByTwoWeeksAgoOrderDesc(List<Integer> sellersId) {
+        List<Post> posts = postRepository.findByTwoWeeksAgoOrderDesc(sellersId);
+        List<PostDto> postDtos = new ArrayList<>();
+        if (posts.isEmpty()) {
+            return postDtos;
+        } else {
+            postDtos = posts.stream()
+                    .map(p -> DtoMapper.postToPostDto(p))
+                    .toList();
+        }
+        return postDtos;
+    }
 }

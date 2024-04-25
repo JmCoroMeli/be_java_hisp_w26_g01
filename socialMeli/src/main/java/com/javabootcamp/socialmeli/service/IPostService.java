@@ -7,4 +7,8 @@ import java.util.List;
 public interface IPostService {
     List<PostDto> findByTwoWeeksAgo(List<Integer> sellersId);
     void addPost(PostDto postDto);
+
+    List<PostDto> findByTwoWeeksAgoOrderAsc(List<Integer> sellersId);
+
+    List<PostDto> findByTwoWeeksAgoOrderDesc(List<Integer> sellersId);
 }
