@@ -22,10 +22,8 @@ public class FollowRepositoryImpl implements FollowRepository {
         followsList.add(follow);
     }
 
-    @Override
-    public void delete(Integer followerId, Integer followedId) {
-        //TODO
-
+    public void delete(Follow follow){
+        followsList.remove(follow);
     }
 
     @Override
@@ -47,8 +45,8 @@ public class FollowRepositoryImpl implements FollowRepository {
     }
 
     @Override
-    public Long countFollowersById(Integer id) {
-        return followsList
+    public int countFollowersById(Integer id) {
+        return (int) followsList
                 .stream()
                 .filter(f -> f.getFollowed().getId().equals(id))
                 .count();

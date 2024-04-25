@@ -5,24 +5,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d9f1bf9-c318-41d4-a076-cf2fc2e828e9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/be_java_hisp_w26_g01.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/dto/ClientDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/dto/ClientDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/dto/PostDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/dto/PostDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/dto/ProductDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/dto/ProductDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/dto/SellerDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/dto/SellerDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/dto/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/repository/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/repository/PostRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/repository/PostRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/repository/PostRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/repository/UserRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/repository/UserRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/service/IPostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/service/IPostService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/service/IProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/service/IProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/service/IUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/service/IUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/service/PostServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/service/PostServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/service/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/service/ProductServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/socialMeli/src/main/java/com/javabootcamp/socialmeli/service/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2fY4OFG1uHpCuOJ6CnXywE0MvhY" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -31,7 +48,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "US__0001",
+    "git-widget-placeholder": "Merging US__0006",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/frmoises/Documents/be_java_hisp_w26_g01",
     "node.js.detected.package.eslint": "true",
@@ -42,6 +59,16 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="SocialMeliApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="socialMeli" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.javabootcamp.socialmeli.SocialMeliApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>

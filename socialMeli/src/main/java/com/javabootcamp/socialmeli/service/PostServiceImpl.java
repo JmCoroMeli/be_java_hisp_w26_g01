@@ -6,19 +6,20 @@ import com.javabootcamp.socialmeli.model.Post;
 import com.javabootcamp.socialmeli.model.Product;
 import com.javabootcamp.socialmeli.model.User;
 import com.javabootcamp.socialmeli.repository.PostRepository;
+import com.javabootcamp.socialmeli.utils.DtoMapper;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class PostServiceImpl implements IPostService {
 
-    private static AtomicInteger CONTADOR = new AtomicInteger(1);
+    private static final AtomicInteger CONTADOR = new AtomicInteger(1);
 
     private final PostRepository postRepository;
     private final IUserService userService;
@@ -43,7 +44,17 @@ public class PostServiceImpl implements IPostService {
     }
 
     @Override
-    public List<PostDto> getLastestPosts() {
-        return null;
+    public List<PostDto> findByTwoWeeksAgo(List<Integer> sellersId) {
+        List<Post> posts = postRepository.findByTwoWeeksAgo(sellersId);
+        List<PostDto> postDtos = new ArrayList<>();
+        if (posts.isEmpty()) {
+            return postDtos;
+        } else {
+            postDtos = posts.stream()
+                    .map(p -> DtoMapper.postToPostDto(p))
+                    .toList();
+        }
+        return postDtos;
     }
+
 }

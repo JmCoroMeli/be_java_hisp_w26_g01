@@ -8,9 +8,9 @@ import com.javabootcamp.socialmeli.model.User;
 
 public interface FollowRepository {
     void add(Follow follow);
-    void delete(Integer followerId, Integer followedId);
+    void delete(Follow follow);
     List<User> findFollowersById(Integer id);
     List<User> findFollowedsById(Integer id);
-    Long countFollowersById(Integer id);
+    int countFollowersById(Integer id);
     Optional<Follow> findByFollowerIdAndFollowedId(Integer followerId, Integer followedId);
 }

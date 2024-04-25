@@ -1,10 +1,9 @@
 package com.javabootcamp.socialmeli.controller;
 
+import com.javabootcamp.socialmeli.dto.LastPostDto;
+import com.javabootcamp.socialmeli.service.IProductService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.javabootcamp.socialmeli.dto.PostDto;
 import com.javabootcamp.socialmeli.service.IPostService;
@@ -16,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/products")
 public class ProductController {
 
+    private final IProductService productService;
     private final IPostService postService;
 
     @PostMapping("/post")
@@ -23,4 +23,10 @@ public class ProductController {
         postService.addPost(post);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/followed/{userId}/list")
+    public ResponseEntity<LastPostDto> getPostFromLastTwoWeeks(@PathVariable("userId") int userId){
+        return ResponseEntity.ok(productService.getPostFromLastTwoWeeks(userId));
+    }
+
 }
