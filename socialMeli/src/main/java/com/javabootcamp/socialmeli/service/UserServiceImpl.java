@@ -127,13 +127,10 @@ public class UserServiceImpl implements IUserService{
     }
 
     @Override
-    public LastPostDto getPostFromLastTwoWeeks(Integer userId) {
+    public List<Integer> getListSellerId(Integer userId) {
+        //valido que exista usuario
         User user = searchUserById(userId);
-        List<Integer> sellerList=new ArrayList<>();
-        List<PostDto> postsDto= postService.findByTwoWeeksAgo( sellerList);
-        if(postsDto.isEmpty()){
-            throw new EntityNotFoundException("No existen posteos de los vendedores seguidos.");
-        }
-        return new LastPostDto(user.getId(),postsDto);
+        //retorno una lista solo con los id's
+        return searchFollowedById(user.getId()).getFollowed().stream().map(UserDto::getId).toList();
     }
 }

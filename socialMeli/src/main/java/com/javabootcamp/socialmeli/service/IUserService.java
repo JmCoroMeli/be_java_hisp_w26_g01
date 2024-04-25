@@ -15,8 +15,6 @@ public interface IUserService {
     ResponseDto addFollower(Integer followerdId, Integer followedId);
 
     ResponseDto deleteFollower(Integer followerId, Integer followedId);
-
-    LastPostDto getPostFromLastTwoWeeks(Integer userId);
-
+    List<Integer> getListSellerId(Integer userId);
     User searchUserById(Integer id);
 }
