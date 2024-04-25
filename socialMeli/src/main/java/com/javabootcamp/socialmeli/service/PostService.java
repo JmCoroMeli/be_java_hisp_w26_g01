@@ -4,7 +4,7 @@ import com.javabootcamp.socialmeli.dto.PostDto;
 
 import java.util.List;
 
-public interface IPostService {
+public interface PostService {
     List<PostDto> findByTwoWeeksAgo(List<Integer> sellersId);
     void addPost(PostDto postDto);
 

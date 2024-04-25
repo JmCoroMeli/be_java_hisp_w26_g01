@@ -4,7 +4,7 @@ import com.javabootcamp.socialmeli.dto.LastPostDto;
 import com.javabootcamp.socialmeli.enums.OrderType;
 import com.javabootcamp.socialmeli.model.Product;
 
-public interface IProductService {
+public interface ProductService {
     Product addProduct(Product product);
     LastPostDto getPostFromLastTwoWeeks(Integer userId);
 

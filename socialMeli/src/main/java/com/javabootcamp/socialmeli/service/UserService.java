@@ -4,11 +4,10 @@ package com.javabootcamp.socialmeli.service;
 import com.javabootcamp.socialmeli.dto.*;
 import com.javabootcamp.socialmeli.enums.OrderType;
 import com.javabootcamp.socialmeli.model.User;
-import org.springframework.core.annotation.Order;
 
 import java.util.List;
 
-public interface IUserService {
+public interface UserService {
 
     FollowedSellersDto searchFollowedById(Integer userId);
 

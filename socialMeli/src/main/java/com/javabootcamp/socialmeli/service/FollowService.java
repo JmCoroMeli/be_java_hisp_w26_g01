@@ -1,19 +1,18 @@
 package com.javabootcamp.socialmeli.service;
 
-import com.javabootcamp.socialmeli.dto.FollowerDto;
 import com.javabootcamp.socialmeli.dto.ResponseDto;
+import com.javabootcamp.socialmeli.dto.UserDto;
 import com.javabootcamp.socialmeli.enums.OrderType;
 import com.javabootcamp.socialmeli.model.User;
-import org.springframework.core.annotation.Order;
 
 import java.util.List;
 
-public interface IFollowService {
+public interface FollowService {
 
     void addFollow(User follower, User followed);
 
 
-    List<FollowerDto> searchFollowersByUser(int idUser);
+    List<UserDto> searchFollowersByUser(int idUser);
 
 
     List<User> searchFollowedByUser(Integer idUser);
@@ -25,10 +24,10 @@ public interface IFollowService {
     int countFollowers(User user);
 
 
-    List<FollowerDto> searchFollowersByUserAndOrderDesc(Integer userId);
+    List<UserDto> searchFollowersByUserAndOrderDesc(Integer userId);
 
 
-    List<FollowerDto> searchFollowersByUserAndOrderAsc(Integer userId);
+    List<UserDto> searchFollowersByUserAndOrderAsc(Integer userId);
 
 
 }
