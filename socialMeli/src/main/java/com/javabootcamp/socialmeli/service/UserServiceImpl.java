@@ -63,7 +63,10 @@ public class UserServiceImpl implements IUserService {
         }
 
         List<UserDto> userDtos = userList.stream()
-                .map(u -> mapper.convertValue(u, UserDto.class))
+                .map(u -> new UserDto(
+                        u.getId(),
+                        u.getUsername()
+                ))
                 .toList();
 
         return new FollowedSellersDto(userId,

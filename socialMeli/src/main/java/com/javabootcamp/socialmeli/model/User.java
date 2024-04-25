@@ -1,5 +1,6 @@
 package com.javabootcamp.socialmeli.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.javabootcamp.socialmeli.enums.UserType;
 
 import lombok.AllArgsConstructor;
@@ -12,5 +13,6 @@ import lombok.NoArgsConstructor;
 public class User {
     private Integer id;
     private String username;
+    @JsonIgnore
     private UserType userType;
 }

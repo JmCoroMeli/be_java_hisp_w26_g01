@@ -8,15 +8,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-/**
 @AllArgsConstructor
 @NoArgsConstructor
-*/
 public class UserDto {
     @JsonProperty("user_id")
     private Integer id;
     @JsonProperty("user_name")
     private String username;
-    private UserType userType;
-
 }
