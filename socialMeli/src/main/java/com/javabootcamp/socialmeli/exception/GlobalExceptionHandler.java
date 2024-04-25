@@ -16,4 +16,8 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ResponseDto> handleResponseStatusException(ResourceAlreadyExistsException e) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(new ResponseDto(e.getMessage()));
     }
+    @ExceptionHandler(IllegalActionException.class)
+    public ResponseEntity<ResponseDto> handleUnsupportedOperationException(IllegalActionException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseDto(e.getMessage()));
+    }
 }
