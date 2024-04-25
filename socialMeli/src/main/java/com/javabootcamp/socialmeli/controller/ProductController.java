@@ -25,7 +25,7 @@ public class ProductController {
     }
 
     @GetMapping("/followed/{userId}/list")
-    public ResponseEntity<LastPostDto> getPostFromLastTwoWeeks(@RequestParam("userId") int userId){
+    public ResponseEntity<LastPostDto> getPostFromLastTwoWeeks(@PathVariable("userId") int userId){
         return ResponseEntity.ok(productService.getPostFromLastTwoWeeks(userId));
     }
 

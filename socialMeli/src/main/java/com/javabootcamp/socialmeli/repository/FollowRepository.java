@@ -5,12 +5,10 @@ import java.util.Optional;
 
 import com.javabootcamp.socialmeli.model.Follow;
 import com.javabootcamp.socialmeli.model.User;
-import org.springframework.stereotype.Repository;
-
 
 public interface FollowRepository {
     void add(Follow follow);
-    void delete(Integer followerId, Integer followedId);
+    void delete(Follow follow);
     List<User> findFollowersById(Integer id);
     List<User> findFollowedsById(Integer id);
     Long countFollowersById(Integer id);

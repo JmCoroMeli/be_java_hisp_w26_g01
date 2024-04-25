@@ -22,12 +22,8 @@ public class FollowRepositoryImpl implements FollowRepository {
         followsList.add(follow);
     }
 
-    @Override
-    public void delete(Integer followerId, Integer followedId) {
-        Optional<Follow> followFound = findByFollowerIdAndFollowedId(followerId,followedId);
-        if (followFound.isPresent()){
-            followsList.remove(followFound);
-        }
+    public void delete(Follow follow){
+        followsList.remove(follow);
     }
 
     @Override

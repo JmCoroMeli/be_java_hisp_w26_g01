@@ -5,9 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-/**
 @AllArgsConstructor
-@NoArgsConstructor*/
+@NoArgsConstructor
 public class ClientDto {
+    //TODO Camboar a lowerCamelCase
     private int user_id;
 }

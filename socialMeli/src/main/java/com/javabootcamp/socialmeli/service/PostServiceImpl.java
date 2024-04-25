@@ -6,6 +6,7 @@ import com.javabootcamp.socialmeli.model.Post;
 import com.javabootcamp.socialmeli.model.Product;
 import com.javabootcamp.socialmeli.model.User;
 import com.javabootcamp.socialmeli.repository.PostRepository;
+import com.javabootcamp.socialmeli.utils.DtoMapper;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,17 +14,15 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class PostServiceImpl implements IPostService {
 
-    private static AtomicInteger CONTADOR = new AtomicInteger(1);
+    private static final AtomicInteger CONTADOR = new AtomicInteger(1);
 
     private final PostRepository postRepository;
     private final IUserService userService;
-    private final IProductService productService;
 
     @Override
     public void addPost(PostDto postDto) {
@@ -46,25 +45,16 @@ public class PostServiceImpl implements IPostService {
 
     @Override
     public List<PostDto> findByTwoWeeksAgo(List<Integer> sellersId) {
-        List <Post> posts = postRepository.findByTwoWeeksAgo(sellersId);
-        List <PostDto> postDtos= new ArrayList<>();
-        if(posts.isEmpty()){
+        List<Post> posts = postRepository.findByTwoWeeksAgo(sellersId);
+        List<PostDto> postDtos = new ArrayList<>();
+        if (posts.isEmpty()) {
             return postDtos;
-        }else{
-            posts.stream()
-                    .map(p -> postToPostDto(p))
-                    .collect(Collectors.toList());
+        } else {
+            postDtos = posts.stream()
+                    .map(p -> DtoMapper.postToPostDto(p))
+                    .toList();
         }
         return postDtos;
-    }
-
-    public PostDto postToPostDto(Post post) {
-        PostDto postDto = new PostDto();
-        postDto.setIdUser(post.getUser().getId());
-        postDto.setProduct(productService.productEntityToDto(post.getProduct()));
-        postDto.setCategory(post.getCategory());
-        postDto.setPrice(post.getPrice());
-        return postDto;
     }
 
 }

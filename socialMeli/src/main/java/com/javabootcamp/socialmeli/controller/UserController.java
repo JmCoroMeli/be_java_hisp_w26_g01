@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
@@ -24,8 +23,6 @@ public class UserController {
 
   private final IUserService userService;
 
-    
-
     @GetMapping("/")
     public ResponseEntity<?> getAllUsers(){
         return new ResponseEntity<>(userService.getAllUsers(),HttpStatus.OK);
@@ -33,12 +30,11 @@ public class UserController {
 
     @DeleteMapping("{userId}/unfollow/{userIdToUnfollow}")
     public ResponseEntity<?> unfollow(@PathVariable Integer userId, @PathVariable Integer userIdToUnfollow){
-        userService.deleteFollower(userId,userIdToUnfollow);
         return new ResponseEntity<>(userService.deleteFollower(userId,userIdToUnfollow), HttpStatus.OK);
     }
 
     @GetMapping("/{userId}/followers/list")
-    public ResponseEntity<SellerWithFollowersDTO> getFollowersOfSeller(@RequestParam("userId") int userId){
+    public ResponseEntity<SellerWithFollowersDTO> getFollowersOfSeller(@PathVariable("userId") int userId){
 
         SellerWithFollowersDTO response = userService.searchFollowersById(userId);
 
