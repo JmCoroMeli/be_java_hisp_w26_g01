@@ -10,6 +10,7 @@ import com.javabootcamp.socialmeli.service.UserService;
 import java.util.Objects;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -41,7 +42,6 @@ public class UserController {
 
     @GetMapping("{userId}/followers/count")
     public ResponseEntity<?> getFollowerCount(
-            @Valid
             @PathVariable
             @Positive(message = "El id debe ser mayor a cero.")
             Integer userId){
