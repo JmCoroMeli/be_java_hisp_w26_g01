@@ -1,6 +1,6 @@
 package com.javabootcamp.socialmeli.exception;
 
-import com.javabootcamp.socialmeli.dto.ResponseDto;
+import com.javabootcamp.socialmeli.dto.response.ResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

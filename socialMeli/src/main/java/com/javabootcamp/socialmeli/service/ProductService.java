@@ -1,6 +1,6 @@
 package com.javabootcamp.socialmeli.service;
 
-import com.javabootcamp.socialmeli.dto.LastPostDto;
+import com.javabootcamp.socialmeli.dto.response.LastPostDto;
 import com.javabootcamp.socialmeli.enums.OrderType;
 import com.javabootcamp.socialmeli.model.Product;
 
