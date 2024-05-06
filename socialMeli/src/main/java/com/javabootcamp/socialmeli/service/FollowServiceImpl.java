@@ -21,6 +21,7 @@ public class FollowServiceImpl implements FollowService {
 
     @Override
     public void addFollow(User follower, User followed) {
+        //TO-DO verificar que el usuario existe
         followRepository.findByFollowerIdAndFollowedId(follower.getId(), followed.getId())
                 .ifPresent(v -> {
                     throw new ResourceAlreadyExistsException("Follow already exists");
@@ -30,6 +31,7 @@ public class FollowServiceImpl implements FollowService {
 
     @Override
     public List<UserDto> searchFollowersByUser(int idUser) {
+        //TO-DO verificar que el usuario que dejamos de seguir exista
         List<User> listFollowers = followRepository.findFollowersById(idUser);
         return listFollowers
                 .stream()
@@ -58,6 +60,7 @@ public class FollowServiceImpl implements FollowService {
 
     @Override
     public int countFollowers(User user) {
+        //TO-DO verificar que la cantidad de seguidores es la correcta
         Integer userId = user.getId();
         return followRepository.countFollowersById(userId);
     }
@@ -78,6 +81,7 @@ public class FollowServiceImpl implements FollowService {
 
     @Override
     public List<User> searchFollowedByUserOrder(Integer idUser, OrderType order) {
+        //TO-DO Verificar correcto ordenamiento
 
         if(order.equals(OrderType.name_asc)){
             return followRepository.findFollowedsByIdAsc(idUser);
@@ -88,6 +92,7 @@ public class FollowServiceImpl implements FollowService {
 
     @Override
     public List<UserDto> searchFollowersByUserAndOrderAsc(Integer userId) {
+        //TO-DO Verificar correcto ordenamiento
         return followRepository
             .searchFollowersByUserAndOrderAsc(userId)
             .stream()

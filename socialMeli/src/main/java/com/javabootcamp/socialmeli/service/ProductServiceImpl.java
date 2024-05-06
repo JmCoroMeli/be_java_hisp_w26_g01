@@ -55,6 +55,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public LastPostDto getPostFromLastTwoWeeks(Integer userId) {
+        //To-DO verificar que realmente sean las ultimas dos semanas
         //busco la lista de id de los vendedores seguidos
         List<Integer> sellerList=userService.getListSellerId(userId);
         //busco los posteos de las últimas dos semanas
