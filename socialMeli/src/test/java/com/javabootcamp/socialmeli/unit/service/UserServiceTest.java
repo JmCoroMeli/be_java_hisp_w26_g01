@@ -1,4 +1,4 @@
-package com.javabootcamp.socialmeli.unit;
+package com.javabootcamp.socialmeli.unit.service;
 
 import com.javabootcamp.socialmeli.dto.ResponseDto;
 import com.javabootcamp.socialmeli.dto.SellerWithFollowersDTO;
@@ -96,6 +96,7 @@ public class UserServiceTest {
 
     }
 
+    //T-0002 -> No se cumple
     @Test
     public void whenTryUnfollowUserAndUserDoesNotExist(){
         int idFollowed = 1;
@@ -127,6 +128,7 @@ public class UserServiceTest {
     @Test
     void whenTrySearchFollowedsOrderByNameAsc(){
         Mockito.when(userRepository.findById(CLIENT.getId())).thenReturn(Optional.of(CLIENT));
+        Mockito.when(followService.searchFollowedByUserOrder(CLIENT.getId(),OrderType.name_asc)).thenReturn(List.of(new User()));
         userService.searchFollowedById(CLIENT.getId(), OrderType.name_asc);
         Mockito.verify(followService).searchFollowedByUserOrder(CLIENT.getId(), OrderType.name_asc );
     }
@@ -136,5 +138,7 @@ public class UserServiceTest {
     void whenTrySearchFollowedsWithInvalidOrderThenReturnException(){
         Assertions.assertThrows(IllegalActionException.class, () -> userService.searchFollowedById(CLIENT.getId(),OrderType.date_asc));
     }
+
+
 
 }
