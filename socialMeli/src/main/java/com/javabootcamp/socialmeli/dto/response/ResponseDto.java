@@ -1,4 +1,4 @@
-package com.javabootcamp.socialmeli.dto;
+package com.javabootcamp.socialmeli.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

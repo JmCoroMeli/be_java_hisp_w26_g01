@@ -1,7 +1,7 @@
 package com.javabootcamp.socialmeli.service;
 
-import com.javabootcamp.socialmeli.dto.ResponseDto;
-import com.javabootcamp.socialmeli.dto.UserDto;
+import com.javabootcamp.socialmeli.dto.response.ResponseDto;
+import com.javabootcamp.socialmeli.dto.response.UserDto;
 import com.javabootcamp.socialmeli.enums.OrderType;
 import com.javabootcamp.socialmeli.model.User;
 
