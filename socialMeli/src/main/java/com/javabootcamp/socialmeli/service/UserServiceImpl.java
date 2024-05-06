@@ -144,6 +144,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseDto deleteFollower(Integer followerId, Integer followedId) {
+        searchUserById(followedId);
         return followService.deleteFollow(followerId, followedId);
     }
 
