@@ -10,5 +10,5 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ErrorDto {
-    private String errors;
+    private List<String> errors;
 }

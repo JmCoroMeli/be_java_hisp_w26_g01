@@ -51,10 +51,10 @@ public class UserController {
     @DeleteMapping("{userId}/unfollow/{userIdToUnfollow}")
     public ResponseEntity<?> unfollow(
             @PathVariable
-            @Positive(message = "El id debe ser mayor a cero.")
+            @Positive(message = "El id del usuario debe ser mayor a cero.")
             Integer userId,
             @PathVariable
-            @Positive(message = "El id debe ser mayor a cero.")
+            @Positive(message = "El id del vendedor debe ser mayor a cero.")
             Integer userIdToUnfollow){
         return new ResponseEntity<>(userService.deleteFollower(userId,userIdToUnfollow), HttpStatus.OK);
     }
@@ -80,10 +80,10 @@ public class UserController {
     public ResponseEntity<ResponseDto> followUser(
 
             @PathVariable
-            @Positive(message = "El id debe ser mayor a cero.")
+            @Positive(message = "El id del usuario debe ser mayor a cero.")
             Integer userId,
             @PathVariable
-            @Positive(message = "El id debe ser mayor a cero.")
+            @Positive(message = "El id del vendedor debe ser mayor a cero.")
             Integer userToFollow) {
         return ResponseEntity.ok(userService.addFollower(userId, userToFollow));
     }
