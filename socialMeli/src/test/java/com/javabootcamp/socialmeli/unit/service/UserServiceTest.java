@@ -1,8 +1,6 @@
 package com.javabootcamp.socialmeli.unit.service;
 
-import com.javabootcamp.socialmeli.dto.ResponseDto;
-import com.javabootcamp.socialmeli.dto.SellerWithFollowersDTO;
-import com.javabootcamp.socialmeli.dto.UserDto;
+import com.javabootcamp.socialmeli.dto.response.ResponseDto;
 import com.javabootcamp.socialmeli.enums.OrderType;
 import com.javabootcamp.socialmeli.exception.EntityNotFoundException;
 import com.javabootcamp.socialmeli.exception.IllegalActionException;

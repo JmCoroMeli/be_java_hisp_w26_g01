@@ -1,6 +1,6 @@
 package com.javabootcamp.socialmeli.unit.service;
 
-import com.javabootcamp.socialmeli.dto.PostDto;
+import com.javabootcamp.socialmeli.dto.request.PostDto;
 import com.javabootcamp.socialmeli.enums.OrderType;
 import com.javabootcamp.socialmeli.exception.IllegalActionException;
 import com.javabootcamp.socialmeli.service.PostService;
@@ -12,7 +12,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.internal.matchers.Any;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;

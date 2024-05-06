@@ -1,10 +1,8 @@
 package com.javabootcamp.socialmeli.utils;
 
-import com.javabootcamp.socialmeli.dto.UserDto;
 import com.javabootcamp.socialmeli.enums.UserType;
 import com.javabootcamp.socialmeli.model.User;
 
-import java.util.List;
 
 public class UserBuilder {
 
