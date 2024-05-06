@@ -38,6 +38,6 @@ public class ProductDto {
     private String color;
 
     @Size(max = 80, message = "La longitud no puede superar los 80 caracteres.")
-    @Pattern(regexp = "^[a-zA-Z0-9-\s]+$", message = "El campo no puede poseer caracteres especiales.")
+    @Pattern(regexp = "^[a-zA-Z0-9 ]*$", message = "El campo no puede poseer caracteres especiales.")
     private String notes;
 }

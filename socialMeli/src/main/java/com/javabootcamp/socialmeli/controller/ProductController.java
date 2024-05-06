@@ -6,6 +6,7 @@ import com.javabootcamp.socialmeli.service.ProductService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +34,7 @@ public class ProductController {
     @GetMapping("/followed/{userId}/list")
     public ResponseEntity<LastPostDto> getPostFromLastTwoWeeks(
             @PathVariable("userId")
-            @Min(value = 0,message = "El id debe ser mayor a cero.") int userId,
+            @Positive(message = "El id debe ser mayor a cero.") int userId,
             @RequestParam(required = false) OrderType order){
 
         LastPostDto response;

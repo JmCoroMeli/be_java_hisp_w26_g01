@@ -9,8 +9,10 @@ import com.javabootcamp.socialmeli.service.UserService;
 
 import java.util.Objects;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -39,8 +41,9 @@ public class UserController {
 
     @GetMapping("{userId}/followers/count")
     public ResponseEntity<?> getFollowerCount(
+            @Valid
             @PathVariable
-            @Min(value = 0,message = "El id debe ser mayor a cero.")
+            @Positive(message = "El id debe ser mayor a cero.")
             Integer userId){
         return ResponseEntity.ok(userService.countFollowersById(userId));
     }
@@ -48,10 +51,10 @@ public class UserController {
     @DeleteMapping("{userId}/unfollow/{userIdToUnfollow}")
     public ResponseEntity<?> unfollow(
             @PathVariable
-            @Min(value = 0,message = "El id debe ser mayor a cero.")
+            @Positive(message = "El id debe ser mayor a cero.")
             Integer userId,
             @PathVariable
-            @Min(value = 0,message = "El id debe ser mayor a cero.")
+            @Positive(message = "El id debe ser mayor a cero.")
             Integer userIdToUnfollow){
         return new ResponseEntity<>(userService.deleteFollower(userId,userIdToUnfollow), HttpStatus.OK);
     }
@@ -59,7 +62,7 @@ public class UserController {
     @GetMapping("/{userId}/followers/list")
     public ResponseEntity<SellerWithFollowersDTO> getFollowersOfSeller(
             @PathVariable("userId")
-            @Min(value = 0,message = "El id debe ser mayor a cero.")
+            @Positive(message = "El id debe ser mayor a cero.")
             int userId,
             @RequestParam(required = false) OrderType order){
 
@@ -75,11 +78,12 @@ public class UserController {
 
     @PostMapping(path = "{userId}/follow/{userToFollow}")
     public ResponseEntity<ResponseDto> followUser(
+
             @PathVariable
-            @Min(value = 0,message = "El id debe ser mayor a cero.")
+            @Positive(message = "El id debe ser mayor a cero.")
             Integer userId,
             @PathVariable
-            @Min(value = 0,message = "El id debe ser mayor a cero.")
+            @Positive(message = "El id debe ser mayor a cero.")
             Integer userToFollow) {
         return ResponseEntity.ok(userService.addFollower(userId, userToFollow));
     }
@@ -87,7 +91,7 @@ public class UserController {
     @GetMapping(path = "/{userId}/followed/list")
     public ResponseEntity<FollowedSellersDto> getFollowedByUserId(
             @PathVariable
-            @Min(value = 0,message = "El id debe ser mayor a cero.")
+            @Positive(message = "El id debe ser mayor a cero.")
             Integer userId,
             @RequestParam(required = false) OrderType order) {
 

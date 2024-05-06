@@ -7,7 +7,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +19,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PostDto {
     @JsonProperty("user_id")
+    @NotNull(message = "El  id no puede estar vacío.")
+    @Min(value = 1,message = "El id debe ser mayor a cero.")
     private Integer idUser;
 
     @JsonFormat(pattern = "dd-MM-yyyy")
