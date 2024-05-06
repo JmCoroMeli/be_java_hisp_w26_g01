@@ -1,4 +1,4 @@
-package com.javabootcamp.socialmeli.dto;
+package com.javabootcamp.socialmeli.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

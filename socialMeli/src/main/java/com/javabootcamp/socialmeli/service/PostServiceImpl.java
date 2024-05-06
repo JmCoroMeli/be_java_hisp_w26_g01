@@ -1,7 +1,7 @@
 package com.javabootcamp.socialmeli.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.javabootcamp.socialmeli.dto.PostDto;
+import com.javabootcamp.socialmeli.dto.request.PostDto;
 import com.javabootcamp.socialmeli.model.Post;
 import com.javabootcamp.socialmeli.model.Product;
 import com.javabootcamp.socialmeli.model.User;

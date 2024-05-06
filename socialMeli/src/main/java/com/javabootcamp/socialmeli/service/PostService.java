@@ -1,6 +1,6 @@
 package com.javabootcamp.socialmeli.service;
 
-import com.javabootcamp.socialmeli.dto.PostDto;
+import com.javabootcamp.socialmeli.dto.request.PostDto;
 
 import java.util.List;
 

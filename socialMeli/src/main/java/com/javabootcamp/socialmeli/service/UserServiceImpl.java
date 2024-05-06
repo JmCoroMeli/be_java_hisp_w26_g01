@@ -1,13 +1,13 @@
 package com.javabootcamp.socialmeli.service;
 
-import com.javabootcamp.socialmeli.dto.FollowersCountDto;
+import com.javabootcamp.socialmeli.dto.response.FollowersCountDto;
 import com.javabootcamp.socialmeli.enums.OrderType;
 import com.javabootcamp.socialmeli.enums.UserType;
 import com.javabootcamp.socialmeli.exception.IllegalActionException;
-import com.javabootcamp.socialmeli.dto.FollowedSellersDto;
-import com.javabootcamp.socialmeli.dto.UserDto;
-import com.javabootcamp.socialmeli.dto.SellerWithFollowersDTO;
-import com.javabootcamp.socialmeli.dto.ResponseDto;
+import com.javabootcamp.socialmeli.dto.response.FollowedSellersDto;
+import com.javabootcamp.socialmeli.dto.response.UserDto;
+import com.javabootcamp.socialmeli.dto.response.SellerWithFollowersDTO;
+import com.javabootcamp.socialmeli.dto.response.ResponseDto;
 import com.javabootcamp.socialmeli.model.User;
 import com.javabootcamp.socialmeli.repository.UserRepository;
 import com.javabootcamp.socialmeli.exception.EntityNotFoundException;
