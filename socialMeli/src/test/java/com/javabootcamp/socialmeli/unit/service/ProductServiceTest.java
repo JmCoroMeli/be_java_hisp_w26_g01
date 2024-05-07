@@ -7,6 +7,7 @@ import com.javabootcamp.socialmeli.service.PostService;
 import com.javabootcamp.socialmeli.service.ProductServiceImpl;
 import com.javabootcamp.socialmeli.service.UserService;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -31,6 +32,7 @@ public class ProductServiceTest {
 
     //T-0005 -> Se cumple
     @Test
+    @DisplayName("T-0005 -> Verifica si el tipo de ordenamiento por fecha existe y existe")
     public void verifyDateOrderTypeExists(){
 
         int idUser = 1;
@@ -50,6 +52,7 @@ public class ProductServiceTest {
 
 
     //T-0005 -> No se cumple
+    @DisplayName("T-0005 -> Verifica si el tipo de ordenamiento por fecha existe y falla")
     @Test
     public void verifyDateOrderTypeDoesNotExists(){
 

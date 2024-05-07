@@ -7,6 +7,7 @@ import com.javabootcamp.socialmeli.repository.PostRepositoryImpl;
 import com.javabootcamp.socialmeli.utils.PostBuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -15,6 +16,10 @@ import java.util.List;
 public class PostRepositoryTest {
 
     private static PostRepository postRepository;
+    /**
+     * Crea un repositorio de publicaciones, con un usuario asociado y un producto para poder realizar
+     * las pruebas
+     */
     @BeforeEach
     void init(){
         postRepository = new PostRepositoryImpl();
@@ -25,6 +30,7 @@ public class PostRepositoryTest {
 
     //T-0006
     @Test
+    @DisplayName("T-0006 -> Corrobora el correcto ordenamiento por fecha de forma asc de publicaciones de un vendedor")
     void orderPostDateAsc(){
         List<Post> listOfPostExpected = List.of(
                 PostBuilder.post(LocalDate.of(2024,5,1),1),
@@ -37,6 +43,7 @@ public class PostRepositoryTest {
     }
 
     @Test
+    @DisplayName("T-0006 -> Corrobora el correcto ordenamiento por fecha de forma desc de publicaciones de un vendedor")
     void orderPostDateDesc(){
 
         List<Post> listOfPostExpected = List.of(
@@ -51,6 +58,7 @@ public class PostRepositoryTest {
 
     //T-0008
     @Test
+    @DisplayName("T-0008 -> Corrobora que las publicaciones buscadas de un vendedor, sean efectivamente de hace dos semanas")
     void findByTwoWeeksAgoTest() {
         //Agrego un post adicional con mas de dos semanas.
         postRepository.add(PostBuilder.post(LocalDate.of(2024,3,5),4));
